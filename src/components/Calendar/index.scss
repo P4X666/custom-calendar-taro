@@ -1,0 +1,123 @@
+.custom-calendar {
+  width: 100%;
+  .calendar-head {
+    font-size: 1rem;
+    & > view {
+      display: inline-block;
+      width: 14.28%;
+      height: 2rem;
+      line-height: 2rem;
+      text-align: center;
+      color: #bfbfd1;
+    }
+  }
+
+  .calendar-picker {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+  }
+
+  .calendar-arrow-right,
+  .calendar-arrow-left {
+    display: inline-block;
+    top: 0.2rem;
+    position: relative;
+    height: 1rem;
+    width: 1rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.3;
+  }
+
+  .calendar-arrow-left {
+    right: 0.5rem;
+  }
+
+  .calendar-arrow-right {
+    left: 0.5rem;
+  }
+
+  .calendar-disabled-arrow {
+    display: none;
+  }
+
+  .calendar-arrow-right {
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTY1OTMxNTc3NzI2IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9Ijg0MjAiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTMzLjIgNDkyLjNMMjc3LjkgMTY2LjFjLTMtMy45LTcuNy02LjEtMTIuNi02LjFIMTg4Yy02LjcgMC0xMC40IDcuNy02LjMgMTIuOUw0NDcuMSA1MTIgMTgxLjcgODUxLjFjLTQuMSA1LjItMC40IDEyLjkgNi4zIDEyLjloNzcuM2M0LjkgMCA5LjYtMi4zIDEyLjYtNi4xbDI1NS4zLTMyNi4xYzkuMS0xMS43IDkuMS0yNy45IDAtMzkuNXoiIHAtaWQ9Ijg0MjEiPjwvcGF0aD48cGF0aCBkPSJNODM3LjIgNDkyLjNMNTgxLjkgMTY2LjFjLTMtMy45LTcuNy02LjEtMTIuNi02LjFINDkyYy02LjcgMC0xMC40IDcuNy02LjMgMTIuOUw3NTEuMSA1MTIgNDg1LjcgODUxLjFjLTQuMSA1LjItMC40IDEyLjkgNi4zIDEyLjloNzcuM2M0LjkgMCA5LjYtMi4zIDEyLjYtNi4xbDI1NS4zLTMyNi4xYzkuMS0xMS43IDkuMS0yNy45IDAtMzkuNXoiIHAtaWQ9Ijg0MjIiPjwvcGF0aD48L3N2Zz4=");
+  }
+
+  .calendar-arrow-left {
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTY1OTMyNTA5NzA3IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9Ijg1MzkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNMjcyLjkgNTEybDI2NS40LTMzOS4xYzQuMS01LjIgMC40LTEyLjktNi4zLTEyLjloLTc3LjNjLTQuOSAwLTkuNiAyLjMtMTIuNiA2LjFMMTg2LjggNDkyLjNjLTkuMSAxMS42LTkuMSAyNy45IDAgMzkuNWwyNTUuMyAzMjYuMWMzIDMuOSA3LjcgNi4xIDEyLjYgNi4xSDUzMmM2LjcgMCAxMC40LTcuNyA2LjMtMTIuOUwyNzIuOSA1MTJ6IiBwLWlkPSI4NTQwIj48L3BhdGg+PHBhdGggZD0iTTU3Ni45IDUxMmwyNjUuNC0zMzkuMWM0LjEtNS4yIDAuNC0xMi45LTYuMy0xMi45aC03Ny4zYy00LjkgMC05LjYgMi4zLTEyLjYgNi4xTDQ5MC44IDQ5Mi4zYy05LjEgMTEuNi05LjEgMjcuOSAwIDM5LjVsMjU1LjMgMzI2LjFjMyAzLjkgNy43IDYuMSAxMi42IDYuMUg4MzZjNi43IDAgMTAuNC03LjcgNi4zLTEyLjlMNTc2LjkgNTEyeiIgcC1pZD0iODU0MSI+PC9wYXRoPjwvc3ZnPg==");
+  }
+  .calendar-body {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+    // 分割线
+    .calendar-line-divider {
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+    // 当天
+    .calendar-today {
+      font-weight: bolder;
+    }
+
+    // 基础样式
+    .calendar-date {
+      width: 2rem;
+      line-height: 2rem;
+      margin-left: 0.5rem;
+      border-radius: 50%;
+    }
+    // 选中样式
+    .calendar-selected .calendar-date {
+      background-color: #90b1ef;
+      color: white;
+    }
+
+    // 范围选择
+    .calendar-range .calendar-date {
+      background-color: #90b1ef;
+      color: white;
+    }
+
+    // 范围选择起点
+    .calendar-range-end .calendar-date {
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
+    // 范围选择终点
+    .calendar-range-start .calendar-date {
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+    // 非本月
+    .not-this-month > .calendar-date {
+      color: #e2e5e8;
+    }
+
+    & .calendar-day {
+      position: relative;
+      height: 3rem;
+      width: 14.28vw;
+      text-align: center;
+      color: #828ba6;
+      // 标记
+      .calendar-mark {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 0.5rem;
+        width: 0.5rem;
+        border-radius: 50%;
+      }
+
+      // 额外信息
+      .calendar-extra-info {
+        color: #ff9800;
+      }
+    }
+  }
+}

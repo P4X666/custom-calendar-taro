@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "custom-calendar-taro",
+  "appid": "touristappid",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
