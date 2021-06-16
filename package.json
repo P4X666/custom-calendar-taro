@@ -33,7 +33,7 @@
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
+  "author": "pengshixing",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "^3.0.0",

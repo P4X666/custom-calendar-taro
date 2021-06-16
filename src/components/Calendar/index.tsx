@@ -1,18 +1,114 @@
 import { Picker, View, Swiper, SwiperItem } from "@tarojs/components";
-import { Component } from "react";
-import { formatDate, fillWithZero, getWeekDayList } from "./utils";
-import Days from "./days/index";
-
+import { Component,CSSProperties } from "react";
+import { formatDate, fillWithZero, getWeekDayList, CalendarDateInfo } from "./utils";
+import Days, {
+  
+  CustomStyles,
+  StyleGeneratorParams
+} from "./days/index";
 import "./index.scss";
 
-class CustomCalendar extends Component {
-  state = {
-    current: formatDate(new Date(this.props.currentView)),
-    selectedDate: this.props.selectedDate,
+export type CalendarMark = {
+  /** 要标记的日期 YYYY-MM-DD*/
+  value: string;
+  /** 标记颜色 */
+  color?: string;
+  /** 标记的大小，css中的width、length */
+  markSize?: string;
+};
+export type ExtraInfo = {
+  /** 要标记的日期 YYYY-MM-DD*/
+  value: string;
+  /** 额外信息文本 */
+  text: string;
+  /** 颜色 */
+  color?: string;
+  /** 文字大小 */
+  fontSize?: string;
+};
+export type IProps = {
+  /** 额外信息 */
+  extraInfo?: ExtraInfo[];
+  /** 要标记的日期列表 YYYY-MM-DD */
+  marks?: CalendarMark[];
+  /** 点击回调 */
+  onDayClick?: (item: { value: string }) => any;
+  /** 长按回调（触发长按事件时不会触发点击事件） */
+  onDayLongPress?: (item: { value: string }) => any;
+  /** 当前选中的时间 YYYY-MM-DD*/
+  selectedDate?: string;
+  /** 当前显示的月份/周 所包含的一个日期 YYYY-MM-DD */
+  currentView?: string;
+  /** 隐藏箭头 */
+  hideArrow?: boolean;
+  /** 隐藏控制器 */
+  hideController?: boolean;
+  /** 是否可以滑动 */
+  isSwiper?: boolean;
+  /** 滑动方向 水平/竖直*/
+  isVertical?: boolean;
+  /** 最小的可选时间 */
+  minDate?: string;
+  /** 最大的可选时间 */
+  maxDate?: string;
+  /** 选中日期的背景色 */
+  selectedDateColor?: string;
+  /** 是否显示分割线 */
+  showDivider?: boolean;
+  /** 是否范围选择模式 */
+  isMultiSelect?: boolean;
+  /** 月份/周改变回调 */
+  onCurrentViewChange?: (value: string) => any;
+  /** 点击左箭头 */
+  onClickPre?: () => any;
+  /** 点击右箭头 */
+  onClickNext?: () => any;
+  /** 范围选择完成时的回调 */
+  onSelectDate?: (value: { start: string; end: string }) => any;
+  /** 自定义样式生成器 */
+  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles;
+  /** 头部整体样式 */
+  headStyle?: CSSProperties;
+  /** 头部单元格样式 */
+  headCellStyle?: CSSProperties;
+  /** body整体样式 */
+  bodyStyle?: CSSProperties;
+  /** 左箭头样式 */
+  leftArrowStyle?: CSSProperties;
+  /** 右箭头样式 */
+  rightArrowStyle?: CSSProperties;
+  /** 日期选择器样式 */
+  datePickerStyle?: CSSProperties;
+  /** 日期选择器&左右箭头 所在容器样式 */
+  pickerRowStyle?: CSSProperties;
+  /** 视图 月/周 */
+  view?: 'month' | 'week';
+  /** 日期选择器文本生成器 */
+  pickerTextGenerator?: (currentView: Date) => string;
+  /** 父组件通过ref可以调用内部方法 */
+  bindRef?: (ref: CustomCalendar) => any;
+  /** 指定周几为一行的起点，0为周日*/
+  startDay?: number;
+};
+
+type IState = {
+  /** 当前年月YYYY-MM */
+  current: string;
+  /** 当前选中日期 YYYY-MM-DD*/
+  selectedDate: string;
+  /** 当前显示的轮播图index */
+  currentCarouselIndex: number;
+  /** 范围选择 */
+  selectedRange: { start: string; end: string };
+};
+class CustomCalendar extends Component<IProps, IState>{
+  state:IState  = {
+    current: formatDate(new Date(this.props.currentView as string)),
+    selectedDate: this.props.selectedDate as string,
     currentCarouselIndex: 1,
     selectedRange: { start: "", end: "" },
   };
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (this.props.bindRef) {
       this.props.bindRef(this);
     }
@@ -37,7 +133,6 @@ class CustomCalendar extends Component {
 
   getPickerText = () => {
     let { view, startDay } = this.props;
-    startDay = startDay;
     const { current } = this.state;
     const currentDateObj = new Date(current);
     const monthStr = formatDate(currentDateObj, "month");
@@ -207,7 +302,7 @@ class CustomCalendar extends Component {
     }
     const preIndex = (currentCarouselIndex + 2) % 3;
     const nextIndex = (currentCarouselIndex + 1) % 3;
-    let monthObj = [];
+    let monthObj:Array<Date> = [];
     monthObj[currentCarouselIndex] = currentDate;
     monthObj[preIndex] = preDate;
     monthObj[nextIndex] = nextDate;

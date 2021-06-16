@@ -1,8 +1,74 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { View } from '@tarojs/components';
-import { formatDate } from '../utils';
+import {
+  CustomStyles,
+  StyleGeneratorParams
+} from "../days/index";
+import { formatDate, CalendarDateInfo, } from "../utils";
 
-const Day = (props) => {
+interface IProps {
+  onDayLongPress?: ({value}: {value: string})=>void;
+  /**
+   * 是否被选中
+   */
+  selected: boolean;
+  /** 点击事件回调 */
+  onClick: (info: CalendarDateInfo) => any;
+  value: CalendarDateInfo;
+  /** 是否范围选择模式并且endDateStr不为空 **/
+  isMultiSelectAndFinish: boolean;
+  /**
+   * 当前日期是否有mark，没有为-1
+   */
+  markIndex: number;
+  /**
+   * 当前日期是否有extraInfo，没有为-1
+   */
+  extraInfoIndex: number;
+  /** 是否显示分割线 */
+  showDivider: boolean;
+  /** 最小的可选时间 */
+  minDate: string;
+  /** 最大的可选时间 */
+  maxDate?: string | undefined;
+  /** 自定义样式生成器 */
+  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles;
+  /** 选定时的背景色 */
+  selectedDateColor?: string;
+  /**
+   * mark的背景色
+   */
+  markColor: string|undefined;
+  markSize: string|undefined;
+  /**
+   * extraInfo的color
+   */
+  extraInfoColor: string|undefined;
+  /**
+   * extraInfo的fontSize
+   */
+  extraInfoSize: string|undefined;
+  /**
+   * extraInfo的文本
+   */
+  extraInfoText: string|undefined;
+  /**
+   * 被选择（范围选择）
+   */
+  isInRange: boolean;
+  /**
+   * 范围起点
+   */
+  rangeStart: boolean;
+  /**
+   * 范围终点
+   */
+  rangeEnd: boolean;
+  /** 禁用(不在minDate和maxDate的时间范围内的日期) */
+  disable: boolean;
+}
+
+const Day:FC<IProps> = (props)=>{
   const {
     selected,
     onDayLongPress,
@@ -24,11 +90,11 @@ const Day = (props) => {
     extraInfoText,
     showDivider,
   } = props;
-  const [className, setClassName] = useState(['calendar-day']);
-  const [customStyles, setCustomStyles] = useState({});
+  const [className, setClassName] = useState<Array<string>>(['calendar-day']);
+  const [customStyles, setCustomStyles] = useState<CustomStyles>({});
 
   useEffect(() => {
-    let set = ['calendar-day'];
+    let set:Array<string> = ['calendar-day'];
     const today = formatDate(new Date(), 'day');
 
     if (!value.currentMonth || disable) {
@@ -132,8 +198,8 @@ const Day = (props) => {
           customStyles.dateStyle || customStyles.dateStyle === {}
             ? customStyles.dateStyle
             : {
-                backgroundColor: selected || isInRange ? selectedDateColor : '',
-              }
+              backgroundColor: selected || isInRange ? selectedDateColor : '',
+            }
         }
       >
         {/* 日期 */}

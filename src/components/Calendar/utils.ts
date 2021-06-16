@@ -1,5 +1,14 @@
+export type CalendarDateInfo = {
+  /** 当前月的第几天1 ~ 31 */
+  date: number;
+  /** 是否是当前月份的日期 */
+  currentMonth: boolean;
+  /** 完整的时间表示 YYYY-MM-DD */
+  fullDateStr: string;
+};
+
 /** 填充0 */
-export const fillWithZero = (target, length) => {
+export const fillWithZero = (target: number, length: number): string => {
   return (Array(length).join("0") + target).slice(-length);
 };
 
@@ -8,20 +17,18 @@ export const fillWithZero = (target, length) => {
  * @param date Date类型的时间
  * @param field 时间显示粒度
  */
-export const formatDate = (date, field = "day") => {
+export const formatDate = (date: Date, field = "day"): string => {
   const yearStr = date.getFullYear();
   const month = date.getMonth() + 1;
   const monthStr = fillWithZero(month, 2);
   const day = date.getDate();
   const dayStr = fillWithZero(day, 2);
-  switch (field) {
-    case "year":
-      return `${yearStr}`;
-    case "month":
-      return `${yearStr}-${monthStr}`;
-    case "day":
-      return `${yearStr}-${monthStr}-${dayStr}`;
+  const strMap = {
+    year: yearStr,
+    month: `${yearStr} - ${monthStr}`,
+    day: `${yearStr}-${monthStr}-${dayStr}`
   }
+  return strMap[field]
 };
 
 /**
@@ -29,7 +36,7 @@ export const formatDate = (date, field = "day") => {
  * @param current 当前是第几天
  * @param add 要加多少天
  */
-export const calcWeekDay = (current, add) => {
+export const calcWeekDay = (current: number, add: number) => {
   return (current + add) % 7;
 };
 
@@ -38,12 +45,12 @@ export const calcWeekDay = (current, add) => {
  * @param date 属于目标月份的Date对象
  * @param startDay 一行的起点  比如以周一为起点 此时startDay = 1，以周日为起点，此时startDay = 0
  */
-export const getDateListByMonth = (date, startDay) => {
+export const getDateListByMonth = (date: Date, startDay: number) => {
   const month = date.getMonth();
   const year = date.getFullYear();
   /** 一周的最后一天 */
   const weekEndDay = calcWeekDay(startDay, 6);
-  let result = [];
+  let result: Array<CalendarDateInfo> = [];
   /** 先获取该月份的起点 */
   date.setDate(1);
 
@@ -114,11 +121,11 @@ export const getDateListByMonth = (date, startDay) => {
  * @param date 属于目标星期的Date对象
  * @param startDay 一行的起点  比如以周一为起点 此时startDay = 1，以周日为起点，此时startDay = 0
  */
-export const getDateListByWeek = (date, startDay) => {
+export const getDateListByWeek = (date: Date, startDay: number) => {
   date.setDate(date.getDate() - ((date.getDay() - startDay + 7) % 7));
   /** 一周的最后一天 */
   const weekEndDay = calcWeekDay(startDay, 6);
-  let result = [];
+  let result: Array<object> = [];
   while (date.getDay() !== weekEndDay) {
     result.push({
       date: date.getDate(),
@@ -135,9 +142,14 @@ export const getDateListByWeek = (date, startDay) => {
   return result;
 };
 
-export const getWeekDayList = (startDay) => {
-  const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
-  let result = [];
+const weekDays: Array<string> = ["日", "一", "二", "三", "四", "五", "六"];
+/**
+ * @description 
+ * @param startDay 一周的起始日期
+ * @returns Array<string>
+ */
+export const getWeekDayList = (startDay: number) => {
+  let result: Array<string> = [];
   for (let i = startDay; i < 7; i++) {
     result.push(weekDays[i]);
   }
