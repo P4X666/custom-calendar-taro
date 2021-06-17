@@ -34,8 +34,6 @@ export type StyleGeneratorParams = {
   };
 };
 export type CustomStyles = {
-  /** 农历样式 */
-  lunarStyle?: CSSProperties;
   /** 日期样式 */
   dateStyle?: CSSProperties;
   /** 标记样式 */
@@ -64,8 +62,6 @@ export type DaysProps = {
   minDate: string;
   /** 最大的可选时间 */
   maxDate?: string;
-  /** 显示模式 普通/农历 */
-  mode: 'normal' | 'lunar';
   /** 是否显示分割线 */
   showDivider: boolean;
   /** 是否范围选择模式 */
@@ -100,8 +96,8 @@ const Days: FunctionComponent<DaysProps> = ({
   extraInfo,
 }) => {
   const [days, setDays] = useState<Array<CalendarDateInfo>>([]);
-  const prevDateRef:Date|object = useRef<Date>(null);
-  const prevViewRef = useRef<String>(null);
+  const prevDateRef:{current:Date|null} = useRef<Date>(null);
+  const prevViewRef:{current:String|null} = useRef<String>(null);
   const _onDayClick = useCallback(
     (value) => {
       onClick && onClick(value);
