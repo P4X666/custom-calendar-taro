@@ -325,6 +325,13 @@ class CustomCalendar extends Component<IProps, IState>{
     monthObj[preIndex] = preDate;
     monthObj[nextIndex] = nextDate;
     // 所有Days组件的公共Props
+    extraInfo=extraInfo as ExtraInfo[]|[]
+    marks=marks as CalendarMark[]|[]
+    minDate=minDate as string
+    maxDate=maxDate as string
+    showDivider=showDivider as boolean
+    isMultiSelect=isMultiSelect as boolean
+    view=view as 'month'|'week'
     const publicDaysProp = {
       marks,
       onClick: this.onClickDate,
