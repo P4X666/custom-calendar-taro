@@ -175,6 +175,7 @@ const Days: FunctionComponent<DaysProps> = ({
           (maxDate &&
             new Date(value.fullDateStr).getTime() > maxDateObj.getTime()) ||
           false;
+        marks=marks as CalendarMark[]
         return (
           <Day
             key={value.fullDateStr}
