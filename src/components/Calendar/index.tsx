@@ -1,5 +1,5 @@
 import { Picker, View, Swiper, SwiperItem } from "@tarojs/components";
-import { Component,CSSProperties } from "react";
+import React, { Component,CSSProperties } from "react";
 import { formatDate, fillWithZero, getWeekDayList, CalendarDateInfo } from "./utils";
 import Days, {
   
@@ -102,18 +102,34 @@ type IState = {
   selectedRange: { start: string; end: string };
 };
 class CustomCalendar extends Component<IProps, IState>{
+  public static defaultProps:Partial<IProps>  = {
+    isVertical: false,
+    marks: [],
+    selectedDate: formatDate(new Date(), "day"),
+    selectedDateColor: "#90b1ef",
+    hideArrow: false,
+    isSwiper: true,
+    minDate: "1970-01-01",
+    maxDate: "2100-12-31",
+    showDivider: false,
+    isMultiSelect: false,
+    view: "month",
+    currentView: formatDate(new Date()),
+    startDay: 0,
+    extraInfo: [],
+  };
   state:IState  = {
     current: formatDate(new Date(this.props.currentView as string)),
     selectedDate: this.props.selectedDate as string,
     currentCarouselIndex: 1,
     selectedRange: { start: "", end: "" },
   };
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     if (this.props.bindRef) {
       this.props.bindRef(this);
     }
   }
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Readonly<IProps>) {
     if (
       nextProps.selectedDate &&
       nextProps.selectedDate !== this.props.selectedDate
@@ -133,6 +149,7 @@ class CustomCalendar extends Component<IProps, IState>{
 
   getPickerText = () => {
     let { view, startDay } = this.props;
+    startDay = startDay as number
     const { current } = this.state;
     const currentDateObj = new Date(current);
     const monthStr = formatDate(currentDateObj, "month");
@@ -262,7 +279,7 @@ class CustomCalendar extends Component<IProps, IState>{
       currentCarouselIndex,
       selectedRange,
     } = this.state;
-    const {
+    let {
       marks,
       isVertical,
       selectedDateColor,
@@ -288,6 +305,7 @@ class CustomCalendar extends Component<IProps, IState>{
       startDay,
       extraInfo,
     } = this.props;
+    startDay=startDay as number
     const currentDate = new Date(current);
     const preDate = new Date(current);
     const nextDate = new Date(current);
@@ -320,7 +338,7 @@ class CustomCalendar extends Component<IProps, IState>{
       selectedRange,
       customStyleGenerator,
       view,
-      startDay,
+      startDay:startDay as number,
       extraInfo,
     };
 
@@ -415,20 +433,4 @@ class CustomCalendar extends Component<IProps, IState>{
   }
 }
 
-CustomCalendar.defaultProps = {
-  isVertical: false,
-  marks: [],
-  selectedDate: formatDate(new Date(), "day"),
-  selectedDateColor: "#90b1ef",
-  hideArrow: false,
-  isSwiper: true,
-  minDate: "1970-01-01",
-  maxDate: "2100-12-31",
-  showDivider: false,
-  isMultiSelect: false,
-  view: "month",
-  currentView: formatDate(new Date()),
-  startDay: 0,
-  extraInfo: [],
-};
 export default CustomCalendar;
