@@ -1,82 +1,16 @@
-import React, { CSSProperties, FunctionComponent, useCallback, useEffect, useRef, useState } from 'react';
-import { View } from '@tarojs/components';
-import {
-  formatDate,
-  getDateListByMonth,
-  getDateListByWeek,
-  CalendarDateInfo
-} from '../utils';
-import { CalendarMark, ExtraInfo } from '../index';
-import Day from '../day';
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { View } from "@tarojs/components";
+import { formatDate, getDateListByMonth, getDateListByWeek } from "../utils";
+import { CalendarMark, CalendarDateInfo } from "../interface_type";
+import Day from "../day";
+import { DaysProps } from "./interface_type";
 
-
-export type StyleGeneratorParams = {
-  /** 当前月的第几天1 ~ 31 */
-  date: number;
-  /** 是否是当前月份的日期 */
-  currentMonth: boolean;
-  /** 完整的时间表示 YYYY-MM-DD */
-  fullDateStr: string;
-  /** 是否被选中 */
-  selected: boolean;
-  /** 是否标记 */
-  marked: boolean;
-  /** 是否含有额外信息 */
-  hasExtraInfo: boolean;
-  /** 多选模式选项 */
-  multiSelect: {
-    /** 是否在选择范围内 */
-    multiSelected: boolean;
-    /** 是否是选择起点 */
-    multiSelectedStar: boolean;
-    /** 是否是选择终点 */
-    multiSelectedEnd: boolean;
-  };
-};
-export type CustomStyles = {
-  /** 日期样式 */
-  dateStyle?: CSSProperties;
-  /** 标记样式 */
-  markStyle?: CSSProperties;
-  /** 容器单元格样式 */
-  containerStyle?: CSSProperties;
-  /** 额外信息样式 */
-  extraInfoStyle?: CSSProperties;
-};
-export type DaysProps = {
-  /** 日期 用于确定年月 */
-  date: Date;
-  /** 点击事件回调 */
-  onClick: (info: CalendarDateInfo) => any;
-  /** 长按回调（触发长按事件时不会触发点击事件） */
-  onDayLongPress?: (item: { value: string }) => any;
-  /** 额外信息 */
-  extraInfo: ExtraInfo[];
-  /** 要标记的日期 */
-  marks: CalendarMark[];
-  /** 选定的日期 */
-  selectedDate: string;
-  /** 选定时的背景色 */
-  selectedDateColor?: string;
-  /** 最小的可选时间 */
-  minDate: string;
-  /** 最大的可选时间 */
-  maxDate: string;
-  /** 是否显示分割线 */
-  showDivider: boolean;
-  /** 是否范围选择模式 */
-  isMultiSelect: boolean;
-  /** 范围选择结果 */
-  selectedRange: { start: string; end: string };
-  /** 自定义样式生成器 */
-  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles;
-  /** 自定义Calendar Body样式 */
-  bodyStyle?: CSSProperties;
-  /** 视图模式 */
-  view: 'month' | 'week';
-  /** 一行的开始 0代表周日*/
-  startDay: number;
-};
 const Days: FunctionComponent<DaysProps> = ({
   date,
   onClick,
@@ -96,8 +30,8 @@ const Days: FunctionComponent<DaysProps> = ({
   extraInfo,
 }) => {
   const [days, setDays] = useState<Array<CalendarDateInfo>>([]);
-  const prevDateRef:{current:Date|null} = useRef<Date>(null);
-  const prevViewRef:{current:String|null} = useRef<String>(null);
+  const prevDateRef: { current: Date | null } = useRef<Date>(null);
+  const prevViewRef: { current: String | null } = useRef<String>(null);
   const _onDayClick = useCallback(
     (value) => {
       onClick && onClick(value);
@@ -122,10 +56,10 @@ const Days: FunctionComponent<DaysProps> = ({
     ) {
       const dateObj = date ? new Date(date) : new Date();
       let tempDays: CalendarDateInfo[] = [];
-      if (view === 'month') {
+      if (view === "month") {
         tempDays = getDateListByMonth(dateObj, startDay);
       }
-      if (view === 'week') {
+      if (view === "week") {
         tempDays = getDateListByWeek(dateObj, startDay);
       }
       setDays(tempDays);
@@ -139,8 +73,8 @@ const Days: FunctionComponent<DaysProps> = ({
   const maxDateObj = new Date(maxDate);
   const markDateList = marks.map((value) => value.value);
   const extraInfoDateList = extraInfo.map((value) => value.value);
-  let endDateStr = selectedRange ? selectedRange.end : '';
-  const startDateObj = new Date(selectedRange ? selectedRange.start : '');
+  let endDateStr = selectedRange ? selectedRange.end : "";
+  const startDateObj = new Date(selectedRange ? selectedRange.start : "");
   const endDateObj = new Date(endDateStr);
   const minDateObj = new Date(minDate);
   return (
@@ -175,14 +109,14 @@ const Days: FunctionComponent<DaysProps> = ({
           (maxDate &&
             new Date(value.fullDateStr).getTime() > maxDateObj.getTime()) ||
           false;
-        marks=marks as CalendarMark[]
+        marks = marks as CalendarMark[];
         return (
           <Day
             key={value.fullDateStr}
             onDayLongPress={_onDayLongPress}
             selected={selectedDate === value.fullDateStr}
             isMultiSelectAndFinish={
-              isMultiSelect && (selectedRange.end || '') != ''
+              isMultiSelect && (selectedRange.end || "") != ""
             }
             markIndex={markIndex}
             extraInfoIndex={extraInfoIndex}
@@ -191,16 +125,16 @@ const Days: FunctionComponent<DaysProps> = ({
             value={value}
             onClick={_onDayClick}
             selectedDateColor={selectedDateColor}
-            markColor={markIndex === -1 ? '' : marks[markIndex].color}
-            markSize={markIndex === -1 ? '' : marks[markIndex].markSize}
+            markColor={markIndex === -1 ? "" : marks[markIndex].color}
+            markSize={markIndex === -1 ? "" : marks[markIndex].markSize}
             extraInfoColor={
-              extraInfoIndex === -1 ? '' : extraInfo[extraInfoIndex].color
+              extraInfoIndex === -1 ? "" : extraInfo[extraInfoIndex].color
             }
             extraInfoSize={
-              extraInfoIndex === -1 ? '' : extraInfo[extraInfoIndex].fontSize
+              extraInfoIndex === -1 ? "" : extraInfo[extraInfoIndex].fontSize
             }
             extraInfoText={
-              extraInfoIndex === -1 ? '' : extraInfo[extraInfoIndex].text
+              extraInfoIndex === -1 ? "" : extraInfo[extraInfoIndex].text
             }
             customStyleGenerator={customStyleGenerator}
             isInRange={isInRange}

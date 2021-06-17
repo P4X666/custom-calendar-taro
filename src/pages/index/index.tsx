@@ -5,7 +5,7 @@ import './index.scss'
 
 const Index: FunctionComponent = () => {
 
-  const [type, setType] = useState('week')
+  const [type, setType] = useState<'week'|'month'>('week')
   // 组件节点
   const CalendarComponent:any = useRef(null);
   // 修改视图类型

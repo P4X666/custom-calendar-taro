@@ -1,12 +1,5 @@
-export type CalendarDateInfo = {
-  /** 当前月的第几天1 ~ 31 */
-  date: number;
-  /** 是否是当前月份的日期 */
-  currentMonth: boolean;
-  /** 完整的时间表示 YYYY-MM-DD */
-  fullDateStr: string;
-};
-
+import { CalendarDateInfo } from './interface_type'
+  
 /** 填充0 */
 export const fillWithZero = (target: number, length: number): string => {
   return (Array(length).join("0") + target).slice(-length);
@@ -45,7 +38,7 @@ export const calcWeekDay = (current: number, add: number) => {
  * @param date 属于目标月份的Date对象
  * @param startDay 一行的起点  比如以周一为起点 此时startDay = 1，以周日为起点，此时startDay = 0
  */
-export const getDateListByMonth = (date: Date, startDay: number):Array<CalendarDateInfo> => {
+export const getDateListByMonth = (date: Date, startDay: number): Array<CalendarDateInfo> => {
   const month = date.getMonth();
   const year = date.getFullYear();
   /** 一周的最后一天 */

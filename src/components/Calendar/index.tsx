@@ -1,32 +1,12 @@
 import { Picker, View, Swiper, SwiperItem } from "@tarojs/components";
-import React, { Component,CSSProperties } from "react";
-import { formatDate, fillWithZero, getWeekDayList, CalendarDateInfo } from "./utils";
-import Days, {
-  
-  CustomStyles,
-  StyleGeneratorParams
-} from "./days/index";
+import React, { Component, CSSProperties } from "react";
+import { formatDate, fillWithZero, getWeekDayList } from "./utils";
+import Days from "./days";
+import { StyleGeneratorParams, CustomStyles } from "./days/interface_type";
+import { ExtraInfo, CalendarMark, IState } from "./interface_type";
 import "./index.scss";
 
-export type CalendarMark = {
-  /** 要标记的日期 YYYY-MM-DD*/
-  value: string;
-  /** 标记颜色 */
-  color?: string;
-  /** 标记的大小，css中的width、length */
-  markSize?: string;
-};
-export type ExtraInfo = {
-  /** 要标记的日期 YYYY-MM-DD*/
-  value: string;
-  /** 额外信息文本 */
-  text: string;
-  /** 颜色 */
-  color?: string;
-  /** 文字大小 */
-  fontSize?: string;
-};
-export type IProps = {
+export interface IProps {
   /** 额外信息 */
   extraInfo?: ExtraInfo[];
   /** 要标记的日期列表 YYYY-MM-DD */
@@ -82,27 +62,17 @@ export type IProps = {
   /** 日期选择器&左右箭头 所在容器样式 */
   pickerRowStyle?: CSSProperties;
   /** 视图 月/周 */
-  view?: 'month' | 'week';
+  view: "month" | "week";
   /** 日期选择器文本生成器 */
   pickerTextGenerator?: (currentView: Date) => string;
   /** 父组件通过ref可以调用内部方法 */
   bindRef?: (ref: CustomCalendar) => any;
   /** 指定周几为一行的起点，0为周日*/
   startDay?: number;
-};
+}
 
-type IState = {
-  /** 当前年月YYYY-MM */
-  current: string;
-  /** 当前选中日期 YYYY-MM-DD*/
-  selectedDate: string;
-  /** 当前显示的轮播图index */
-  currentCarouselIndex: number;
-  /** 范围选择 */
-  selectedRange: { start: string; end: string };
-};
-class CustomCalendar extends Component<IProps, IState>{
-  public static defaultProps:Partial<IProps>  = {
+class CustomCalendar extends Component<IProps, IState> {
+  public static defaultProps: Partial<IProps> = {
     isVertical: false,
     marks: [],
     selectedDate: formatDate(new Date(), "day"),
@@ -118,7 +88,7 @@ class CustomCalendar extends Component<IProps, IState>{
     startDay: 0,
     extraInfo: [],
   };
-  state:IState  = {
+  state: IState = {
     current: formatDate(new Date(this.props.currentView as string)),
     selectedDate: this.props.selectedDate as string,
     currentCarouselIndex: 1,
@@ -149,7 +119,7 @@ class CustomCalendar extends Component<IProps, IState>{
 
   getPickerText = () => {
     let { view, startDay } = this.props;
-    startDay = startDay as number
+    startDay = startDay as number;
     const { current } = this.state;
     const currentDateObj = new Date(current);
     const monthStr = formatDate(currentDateObj, "month");
@@ -305,7 +275,7 @@ class CustomCalendar extends Component<IProps, IState>{
       startDay,
       extraInfo,
     } = this.props;
-    startDay=startDay as number
+    startDay = startDay as number;
     const currentDate = new Date(current);
     const preDate = new Date(current);
     const nextDate = new Date(current);
@@ -320,18 +290,18 @@ class CustomCalendar extends Component<IProps, IState>{
     }
     const preIndex = (currentCarouselIndex + 2) % 3;
     const nextIndex = (currentCarouselIndex + 1) % 3;
-    let monthObj:Array<Date> = [];
+    let monthObj: Array<Date> = [];
     monthObj[currentCarouselIndex] = currentDate;
     monthObj[preIndex] = preDate;
     monthObj[nextIndex] = nextDate;
     // 所有Days组件的公共Props
-    extraInfo=extraInfo as ExtraInfo[]|[]
-    marks=marks as CalendarMark[]|[]
-    minDate=minDate as string
-    maxDate=maxDate as string
-    showDivider=showDivider as boolean
-    isMultiSelect=isMultiSelect as boolean
-    view=view as 'month'|'week'
+    extraInfo = extraInfo as ExtraInfo[] | [];
+    marks = marks as CalendarMark[] | [];
+    minDate = minDate as string;
+    maxDate = maxDate as string;
+    showDivider = showDivider as boolean;
+    isMultiSelect = isMultiSelect as boolean;
+    view = view as "month" | "week";
     const publicDaysProp = {
       marks,
       onClick: this.onClickDate,
@@ -345,7 +315,7 @@ class CustomCalendar extends Component<IProps, IState>{
       selectedRange,
       customStyleGenerator,
       view,
-      startDay:startDay as number,
+      startDay: startDay as number,
       extraInfo,
     };
 
