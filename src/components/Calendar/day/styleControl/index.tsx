@@ -1,8 +1,8 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { formatDate } from "../../utils";
 import { StyleControlProps } from '../interface_type';
 
-const useStyleControl = (props:StyleControlProps):Array<string> => {
+const useStyleControl = (props: StyleControlProps): Array<string> => {
     const {
         selected,
         value,
