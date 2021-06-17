@@ -61,7 +61,7 @@ export type DaysProps = {
   /** 最小的可选时间 */
   minDate: string;
   /** 最大的可选时间 */
-  maxDate?: string;
+  maxDate: string;
   /** 是否显示分割线 */
   showDivider: boolean;
   /** 是否范围选择模式 */
