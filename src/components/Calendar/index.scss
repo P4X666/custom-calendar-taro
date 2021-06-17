@@ -1,5 +1,6 @@
 .custom-calendar {
   width: 100%;
+  margin-bottom: 1rem;
   .calendar-head {
     font-size: 1rem;
     & > view {
@@ -101,7 +102,7 @@
     & .calendar-day {
       position: relative;
       height: 3rem;
-      width: 14.28vw;
+      width: 14.28%;
       text-align: center;
       color: #828ba6;
       // 标记
@@ -116,6 +117,7 @@
 
       // 额外信息
       .calendar-extra-info {
+        line-height: 1rem;
         color: #ff9800;
       }
     }
