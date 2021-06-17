@@ -1,7 +1,7 @@
 {
   "name": "custom-calendar-taro",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
   "templateInfo": {
     "name": "default",
@@ -29,9 +29,9 @@
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "lint": "eslint --ext ts,tsx src --max-warnings 5"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"npm run lint"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
     }
   },
   "browserslist": [
@@ -47,6 +47,7 @@
     "@tarojs/runtime": "^3.0.0",
     "@tarojs/taro": "^3.0.0",
     "husky": "^6.0.0",
+    "jest": "^27.0.4",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
