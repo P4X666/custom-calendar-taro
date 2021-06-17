@@ -320,10 +320,10 @@ class CustomCalendar extends Component<IProps, IState> {
     };
 
     return (
-      <View className='custom-calendar'>
+      <View className="custom-calendar">
         {!hideController && (
           <View
-            className='calendar-picker'
+            className="calendar-picker"
             style={{
               ...pickerRowStyle,
             }}
@@ -331,7 +331,7 @@ class CustomCalendar extends Component<IProps, IState> {
             {!hideArrow && (
               <View
                 style={leftArrowStyle}
-                className='calendar-arrow-left'
+                className="calendar-arrow-left"
                 onClick={this.goPre}
               />
             )}
@@ -341,14 +341,14 @@ class CustomCalendar extends Component<IProps, IState> {
                 lineHeight: "25px",
                 ...datePickerStyle,
               }}
-              mode='date'
+              mode="date"
               onChange={(e) => {
                 const nowDate = formatDate(new Date(e.detail.value));
                 this.setState({ current: nowDate });
                 onCurrentViewChange && onCurrentViewChange(nowDate);
               }}
               value={current}
-              fields='month'
+              fields="month"
               start={minDate}
               end={maxDate}
             >
@@ -359,14 +359,14 @@ class CustomCalendar extends Component<IProps, IState> {
             {!hideArrow && (
               <View
                 style={rightArrowStyle}
-                className='calendar-arrow-right'
+                className="calendar-arrow-right"
                 onClick={this.goNext}
               />
             )}
           </View>
         )}
 
-        <View className='calendar-head' style={headStyle}>
+        <View className="calendar-head" style={headStyle}>
           {getWeekDayList(startDay).map((value) => (
             <View style={headCellStyle} key={value}>
               {value}
@@ -390,15 +390,15 @@ class CustomCalendar extends Component<IProps, IState> {
                   : this.goPre();
               }
             }}
-            className='calendar-swiper'
+            className="calendar-swiper"
           >
-            <SwiperItem style='position: absolute; width: 100%; height: 100%;'>
+            <SwiperItem style="position: absolute; width: 100%; height: 100%;">
               <Days date={monthObj[0]} {...publicDaysProp} />
             </SwiperItem>
-            <SwiperItem style='position: absolute; width: 100%; height: 100%;'>
+            <SwiperItem style="position: absolute; width: 100%; height: 100%;">
               <Days date={monthObj[1]} {...publicDaysProp} />
             </SwiperItem>
-            <SwiperItem style='position: absolute; width: 100%; height: 100%;'>
+            <SwiperItem style="position: absolute; width: 100%; height: 100%;">
               <Days date={monthObj[2]} {...publicDaysProp} />
             </SwiperItem>
           </Swiper>
