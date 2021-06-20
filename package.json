@@ -1,6 +1,6 @@
 {
   "name": "custom-calendar-taro",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "private": false,
   "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
   "author":"pengshixing",
@@ -14,8 +14,12 @@
     "type": "git",
     "url": "https://github.com/P4X666/custom-calendar-taro"
   },
+  "main": "index.ts",
+  "types": "index.d.ts",
   "files": [
-    "src/components/Canlendar"
+    "index.ts",
+    "index.d.ts",
+    "src/components/calendar"
   ],
   "templateInfo": {
     "name": "自定义日历组件",
@@ -62,9 +66,6 @@
     "@tarojs/taro": "^3.0.0",
     "@babel/runtime": "^7.7.7"
   },
-  "dependencies": {
-    
-  },
   "devDependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "^3.0.0",
@@ -81,7 +82,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^7.0.0",
     "@types/jest": "^26.0.23",
-    "@types/react": "^17.0.2",
+    "@types/react": "^16.8.0",
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",

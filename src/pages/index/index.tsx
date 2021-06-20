@@ -1,6 +1,6 @@
 import React, { FunctionComponent,useRef, useState } from 'react'
 import { View, Button } from '@tarojs/components'
-import CustomCalendar from '../../components/Calendar'
+import CustomCalendar from '../../components/calendar'
 import './index.scss'
 
 const Index: FunctionComponent = () => {
