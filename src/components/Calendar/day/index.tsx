@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { View } from "@tarojs/components";
 import { CustomStyles } from "../days/interface_type";
 import { IProps } from "./interface_type";
-import StyleControl from "./styleControl";
+import StyleControl from "./hooks";
 
 const Day: FC<IProps> = (props) => {
   const {

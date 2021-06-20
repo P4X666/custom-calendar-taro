@@ -15,6 +15,7 @@ const useStyleControl = (props: StyleControlProps): Array<string> => {
         isMultiSelectAndFinish,
         showDivider,
     } = props;
+    
     const [className, setClassName] = useState<Array<string>>(["calendar-day"]);
     useEffect(() => {
         let set: Array<string> = ["calendar-day"];
@@ -57,7 +58,6 @@ const useStyleControl = (props: StyleControlProps): Array<string> => {
         if (rangeEnd) {
             set.push("calendar-range-end");
         }
-
         setClassName(set);
     }, [
         disable,

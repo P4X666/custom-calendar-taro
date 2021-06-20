@@ -73,8 +73,8 @@ const Days: FunctionComponent<DaysProps> = ({
   const maxDateObj = new Date(maxDate);
   const markDateList = marks.map((value) => value.value);
   const extraInfoDateList = extraInfo.map((value) => value.value);
-  let endDateStr = selectedRange ? selectedRange.end : "";
-  const startDateObj = new Date(selectedRange ? selectedRange.start : "");
+  let endDateStr = new Date(selectedRange.end);
+  const startDateObj = new Date(selectedRange.start);
   const endDateObj = new Date(endDateStr);
   const minDateObj = new Date(minDate);
   return (
