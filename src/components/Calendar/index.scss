@@ -66,8 +66,8 @@
 
     // 基础样式
     .calendar-date {
-      width: 2rem;
-      line-height: 2rem;
+      width: 1.8rem;
+      line-height: 1.8rem;
       margin-left: 0.5rem;
       border-radius: 50%;
     }
@@ -119,6 +119,7 @@
       .calendar-extra-info {
         line-height: 1rem;
         color: #ff9800;
+        font-size: 0.85rem;
       }
     }
   }
