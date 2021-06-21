@@ -1,5 +1,5 @@
-import { CalendarDateInfo } from "../interface_type";
-import { CustomStyles, StyleGeneratorParams } from "../days/interface_type";
+import { CalendarDateInfo } from "../type";
+import { CustomStyles, StyleGeneratorParams } from "../days/type";
 
 export interface StyleControlProps {
   /**

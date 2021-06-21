@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CalendarDateInfo,CalendarMark, ExtraInfo  } from "../interface_type";
+import { CalendarDateInfo,CalendarMark, ExtraInfo  } from "../type";
 
 export interface DaysProps {
   /** 日期 用于确定年月 */
