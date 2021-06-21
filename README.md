@@ -66,11 +66,11 @@ export default Index;
 
 **周视图**
 
-![](./doc/defaultWeek.png)
+![](doc/defaultWeek.png)
 
 **月视图**
 
-![](./doc/defaultMonth.png)
+![](doc/defaultMonth.png)
 
 因为业务的复杂多变，通常会有自定义的样式控制
 
@@ -124,11 +124,11 @@ export default Index;
 
 **周视图**
 
-![](./doc/simpleWeek.png)
+![](doc/simpleWeek.png)
 
 **月视图**
 
-![](./doc/simpleMonth.png)
+![](doc/simpleMonth.png)
 
 同样可以使用 customStyleGenerator 来更精细化的定制
 
@@ -186,11 +186,11 @@ export default Index;
 
 **周视图**
 
-![](./doc/customWeek.png)
+![](doc/customWeek.png)
 
 **月视图**
 
-![](./doc/customMonth.png)
+![](doc/customMonth.png)
 
 至于其他的就看各位的审美了
 
