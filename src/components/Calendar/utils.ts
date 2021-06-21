@@ -1,4 +1,4 @@
-import { CalendarDateInfo } from './interface_type'
+import { CalendarDateInfo } from './type'
   
 /** 填充0 */
 export const fillWithZero = (target: number, length: number): string => {

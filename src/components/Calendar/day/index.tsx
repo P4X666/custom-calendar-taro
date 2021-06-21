@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { View } from "@tarojs/components";
-import { CustomStyles } from "../days/interface_type";
-import { IProps } from "./interface_type";
+import { CustomStyles } from "../days/type";
+import { IProps } from "./type";
 import StyleControl from "./hooks";
 
 const Day: FC<IProps> = (props) => {
@@ -84,7 +84,7 @@ const Day: FC<IProps> = (props) => {
       <View
         className='calendar-date'
         style={
-          customStyles.dateStyle || customStyles.dateStyle === {}
+          customStyles.dateStyle && typeof customStyles.dateStyle==='object'
             ? customStyles.dateStyle
             : {
                 backgroundColor: selected || isInRange ? selectedDateColor : "",
@@ -109,8 +109,8 @@ const Day: FC<IProps> = (props) => {
         <View
           className='calendar-extra-info'
           style={{
-            color: extraInfoIndex === -1 ? "" : extraInfoColor,
-            fontSize: extraInfoIndex === -1 ? "" : extraInfoSize,
+            color: extraInfoColor,
+            fontSize: extraInfoSize,
             ...customStyles.extraInfoStyle,
           }}
         >

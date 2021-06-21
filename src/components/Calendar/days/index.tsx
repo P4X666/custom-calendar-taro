@@ -7,9 +7,9 @@ import React, {
 } from "react";
 import { View } from "@tarojs/components";
 import { formatDate, getDateListByMonth, getDateListByWeek } from "../utils";
-import { CalendarMark, CalendarDateInfo } from "../interface_type";
+import { CalendarMark, CalendarDateInfo } from "../type";
 import Day from "../day";
-import { DaysProps } from "./interface_type";
+import { DaysProps } from "./type";
 
 const Days: FunctionComponent<DaysProps> = ({
   date,

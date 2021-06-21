@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { formatDate } from "../../utils";
-import { StyleControlProps } from '../interface_type';
+import { StyleControlProps } from '../type';
 
 const useStyleControl = (props: StyleControlProps): Array<string> => {
     const {

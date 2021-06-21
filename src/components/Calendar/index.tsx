@@ -2,8 +2,8 @@ import { Picker, View, Swiper, SwiperItem } from "@tarojs/components";
 import React, { Component, CSSProperties } from "react";
 import { formatDate, fillWithZero, getWeekDayList } from "./utils";
 import Days from "./days";
-import { StyleGeneratorParams, CustomStyles } from "./days/interface_type";
-import { ExtraInfo, CalendarMark, IState } from "./interface_type";
+import { StyleGeneratorParams, CustomStyles } from "./days/type";
+import { ExtraInfo, CalendarMark, IState } from "./type";
 import "./index.scss";
 
 export interface IProps {
@@ -46,7 +46,7 @@ export interface IProps {
   /** 范围选择完成时的回调 */
   onSelectDate?: (value: { start: string; end: string }) => any;
   /** 自定义样式生成器 */
-  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles;
+  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles|{};
   /** 头部整体样式 */
   headStyle?: CSSProperties;
   /** 头部单元格样式 */
