@@ -66,7 +66,8 @@ export default Index;
 
 **周视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/defaultWeek.png)
+![](doc/defaultWeek.png)
+<img src='https://github.com/P4X666/custom-calendar-taro/blob/main/doc/customMonth.png' />
 
 **月视图**
 
