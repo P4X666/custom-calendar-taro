@@ -66,12 +66,11 @@ export default Index;
 
 **周视图**
 
-![](doc/defaultWeek.png)
-<img src='https://github.com/P4X666/custom-calendar-taro/blob/main/doc/customMonth.png' />
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/defaultWeek.png)
 
 **月视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/defaultMonth.png)
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/defaultMonth.png)
 
 因为业务的复杂多变，通常会有自定义的样式控制
 
@@ -125,11 +124,11 @@ export default Index;
 
 **周视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/simpleWeek.png)
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/simpleWeek.png)
 
 **月视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/simpleMonth.png)
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/simpleMonth.png)
 
 同样可以使用 customStyleGenerator 来更精细化的定制
 
@@ -187,11 +186,11 @@ export default Index;
 
 **周视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/customWeek.png)
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/customWeek.png)
 
 **月视图**
 
-![](https://github.com/P4X666/custom-calendar-taro/tree/main/doc/customMonth.png)
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/customMonth.png)
 
 至于其他的就看各位的审美了
 
