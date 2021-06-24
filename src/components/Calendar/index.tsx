@@ -94,29 +94,32 @@ class CustomCalendar extends Component<IProps, IState> {
     currentCarouselIndex: 1,
     selectedRange: { start: "", end: "" },
   };
+
+  static getDerivedStateFromProps(nextProps: Readonly<IProps>,preState:IState) {
+    if (
+      nextProps.selectedDate &&
+      nextProps.selectedDate !== preState.selectedDate
+    ) {
+      return {
+        selectedDate: nextProps.selectedDate,
+        current: nextProps.selectedDate,
+      }
+    }
+    if (
+      nextProps.currentView &&
+      nextProps.currentView !== preState.current
+    ) {
+      return {
+        current:nextProps.currentView,
+      }
+    }
+    return null
+  }
   componentWillMount() {
     if (this.props.bindRef) {
       this.props.bindRef(this);
     }
   }
-  componentWillReceiveProps(nextProps: Readonly<IProps>) {
-    if (
-      nextProps.selectedDate &&
-      nextProps.selectedDate !== this.props.selectedDate
-    ) {
-      this.setState({
-        selectedDate: nextProps.selectedDate,
-        current: nextProps.selectedDate,
-      });
-    }
-    if (
-      nextProps.currentView &&
-      nextProps.currentView !== this.props.currentView
-    ) {
-      this.setState({ current: nextProps.currentView });
-    }
-  }
-
   getPickerText = () => {
     let { view, startDay } = this.props;
     startDay = startDay as number;
