@@ -1,6 +1,6 @@
 {
   "name": "custom-calendar-taro",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
   "author":"pengshixing",
