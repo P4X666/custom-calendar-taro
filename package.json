@@ -20,7 +20,7 @@
   "files": [
     "index.ts",
     "index.d.ts",
-    "src/components/calendar"
+    "src/components/Calendar"
   ],
   "templateInfo": {
     "name": "自定义日历组件",

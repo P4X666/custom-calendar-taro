@@ -1,5 +1,5 @@
 import { ComponentClass } from 'react';
-import { IProps } from './src/components/calendar/index';
+import { IProps } from './src/components/Calendar/index';
 
 export declare type CalendarMark = {
   /** 要标记的日期 */
