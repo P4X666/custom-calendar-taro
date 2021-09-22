@@ -46,7 +46,7 @@ export interface IProps {
   /** 范围选择完成时的回调 */
   onSelectDate?: (value: { start: string; end: string }) => any;
   /** 自定义样式生成器 */
-  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles|{};
+  customStyleGenerator?: (dateInfo: StyleGeneratorParams) => CustomStyles | {};
   /** 头部整体样式 */
   headStyle?: CSSProperties;
   /** 头部单元格样式 */
@@ -94,30 +94,26 @@ class CustomCalendar extends Component<IProps, IState> {
     currentCarouselIndex: 1,
     selectedRange: { start: "", end: "" },
   };
-
-  static getDerivedStateFromProps(nextProps: Readonly<IProps>,preState:IState) {
-    if (
-      nextProps.selectedDate &&
-      nextProps.selectedDate !== preState.selectedDate
-    ) {
-      return {
-        selectedDate: nextProps.selectedDate,
-        current: nextProps.selectedDate,
-      }
-    }
-    if (
-      nextProps.currentView &&
-      nextProps.currentView !== preState.current
-    ) {
-      return {
-        current:nextProps.currentView,
-      }
-    }
-    return null
-  }
   componentWillMount() {
     if (this.props.bindRef) {
       this.props.bindRef(this);
+    }
+  }
+  componentWillReceiveProps(nextProps: Readonly<IProps>): void {
+    if (
+      nextProps.selectedDate &&
+      nextProps.selectedDate !== this.props.selectedDate
+    ) {
+      this.setState({
+        selectedDate: nextProps.selectedDate,
+        current: nextProps.selectedDate,
+      });
+    }
+    if (
+      nextProps.currentView &&
+      nextProps.currentView !== this.props.currentView
+    ) {
+      this.setState({ current: nextProps.currentView });
     }
   }
   getPickerText = () => {
@@ -246,12 +242,8 @@ class CustomCalendar extends Component<IProps, IState> {
   };
 
   render() {
-    const {
-      current,
-      selectedDate,
-      currentCarouselIndex,
-      selectedRange,
-    } = this.state;
+    const { current, selectedDate, currentCarouselIndex, selectedRange } =
+      this.state;
     let {
       marks,
       isVertical,

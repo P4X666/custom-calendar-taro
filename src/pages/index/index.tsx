@@ -66,6 +66,7 @@ const Index: FunctionComponent = () => {
         onDayClick={item => console.log(item)}
         onDayLongPress={item => console.log(item)}
         onCurrentViewChange={setCurrentView}
+        bindRef={(ref)=>{CalendarComponent.current=ref}}
       />
       <View>
         <Button onClick={viewHandle}>切换周和月</Button>

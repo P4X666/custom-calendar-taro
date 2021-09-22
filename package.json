@@ -1,9 +1,9 @@
 {
   "name": "custom-calendar-taro",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "private": false,
   "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
-  "author":"pengshixing",
+  "author": "pengshixing",
   "license": "MIT",
   "keywords": [
     "taro3",
@@ -60,8 +60,8 @@
     "ios >= 8"
   ],
   "peerDependencies": {
-    "react":">=16.8.0",
-    "react-dom":">=16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "@tarojs/react": "^3.0.0",
     "@tarojs/runtime": "^3.0.0",
     "@tarojs/taro": "^3.0.0",
