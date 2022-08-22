@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "es5",
+    "module": "esnext",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -23,6 +23,7 @@
       "global.d.ts"
     ]
   },
+  "include": [ "./src" ],
   "exclude": [
     "node_modules",
     "dist"

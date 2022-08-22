@@ -47,7 +47,9 @@
     "dev:jd": "npm run build:jd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "lint": "eslint --ext ts,tsx src --max-warnings 5",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rimraf ./dist",
+    "build-es": "npm run clean && rollup --config rollup/rollup.esm.config.js"
   },
   "husky": {
     "hooks": {
@@ -60,24 +62,19 @@
     "ios >= 8"
   ],
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "@tarojs/react": "^3.0.0",
-    "@tarojs/runtime": "^3.0.0",
+    "@tarojs/components": "^3.0.0",
     "@tarojs/taro": "^3.0.0",
-    "@babel/runtime": "^7.7.7"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.0",
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "^3.0.0",
+    "@tarojs/mini-runner": "^3.0.0",
     "@tarojs/react": "^3.0.0",
     "@tarojs/runtime": "^3.0.0",
     "@tarojs/taro": "^3.0.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "@babel/core": "^7.8.0",
-    "babel-jest": "^27.0.2",
-    "@tarojs/mini-runner": "^3.0.0",
     "@tarojs/webpack-runner": "^3.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -87,16 +84,27 @@
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
+    "babel-jest": "^27.0.2",
     "babel-preset-taro": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-taro": "^3.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "stylelint": "9.3.0",
-    "typescript": "^4.1.0",
     "husky": "4",
     "jest": "^27.0.4",
-    "ts-node": "^10.0.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.78.1",
+    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.22",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.33.0",
+    "stylelint": "9.3.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.1.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup-plugin-sass": "^1.2.13"
   }
 }
