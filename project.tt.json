@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "custom-calendar-taro",
-  "appid": "touristappid",
+  "projectname": "calendar",
+  "appid": "testAppId",
   "setting": {
     "es6": false,
     "minified": false

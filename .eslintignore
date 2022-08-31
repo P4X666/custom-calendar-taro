@@ -1,0 +1,9 @@
+config
+*.config.js
+*.json
+*.lock
+node_modules
+dist
+build
+config
+scripts

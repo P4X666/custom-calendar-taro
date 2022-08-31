@@ -1,11 +1,13 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "custom-calendar-taro",
-  "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
-  "appid": "touristappid",
+  "projectname": "calendar",
+  "description": "日历",
+  "appid": "wxce947e21e7f67807",
   "setting": {
     "urlCheck": true,
     "es6": false,
+    "enhance": false,
+    "compileHotReLoad": false,
     "postcss": false,
     "minified": false
   },

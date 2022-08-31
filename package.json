@@ -1,31 +1,12 @@
 {
-  "name": "custom-calendar-taro",
-  "version": "1.0.12",
-  "private": false,
-  "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
-  "author": "pengshixing",
-  "license": "MIT",
-  "keywords": [
-    "taro3",
-    "calendar",
-    "react",
-    "ts"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/P4X666/custom-calendar-taro"
-  },
-  "main": "index.ts",
-  "types": "index.d.ts",
-  "files": [
-    "index.ts",
-    "index.d.ts",
-    "src/components/Calendar"
-  ],
+  "name": "calendar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "日历",
   "templateInfo": {
-    "name": "自定义日历组件",
+    "name": "default",
     "typescript": true,
-    "css": "sass"
+    "css": "less"
   },
   "scripts": {
     "build:weapp": "taro build --type weapp",
@@ -45,66 +26,52 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch",
-    "lint": "eslint --ext ts,tsx src --max-warnings 5",
-    "test": "jest",
-    "clean": "rimraf ./dist",
-    "build-es": "npm run clean && rollup --config rollup/rollup.esm.config.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
+    "dev:quickapp": "npm run build:quickapp -- --watch"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "peerDependencies": {
-    "@tarojs/components": "^3.0.0",
-    "@tarojs/taro": "^3.0.0",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+  "author": "",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "3.5.4",
+    "@tarojs/helper": "3.5.4",
+    "@tarojs/plugin-platform-weapp": "3.5.4",
+    "@tarojs/plugin-platform-alipay": "3.5.4",
+    "@tarojs/plugin-platform-tt": "3.5.4",
+    "@tarojs/plugin-platform-swan": "3.5.4",
+    "@tarojs/plugin-platform-jd": "3.5.4",
+    "@tarojs/plugin-platform-qq": "3.5.4",
+    "@tarojs/router": "3.5.4",
+    "@tarojs/runtime": "3.5.4",
+    "@tarojs/shared": "3.5.4",
+    "@tarojs/taro": "3.5.4",
+    "@tarojs/taro-h5": "3.5.4",
+    "@tarojs/plugin-framework-react": "3.5.4",
+    "@tarojs/react": "3.5.4",
+    "react-dom": "^18.0.0",
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
-    "@babel/runtime": "^7.7.7",
-    "@tarojs/components": "^3.0.0",
-    "@tarojs/mini-runner": "^3.0.0",
-    "@tarojs/react": "^3.0.0",
-    "@tarojs/runtime": "^3.0.0",
-    "@tarojs/taro": "^3.0.0",
-    "@tarojs/webpack-runner": "^3.0.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/react-hooks": "^7.0.0",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^16.8.0",
+    "@tarojs/cli": "3.5.4",
     "@types/webpack-env": "^1.13.6",
-    "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "@typescript-eslint/parser": "^4.15.1",
-    "babel-jest": "^27.0.2",
-    "babel-preset-taro": "^3.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-taro": "^3.0.0",
-    "eslint-plugin-import": "^2.12.0",
+    "@types/react": "^18.0.0",
+    "webpack": "5.69.0",
+    "@tarojs/webpack5-runner": "3.5.4",
+    "babel-preset-taro": "3.5.4",
+    "eslint-config-taro": "3.5.4",
+    "eslint": "^8.12.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
+    "react-refresh": "^0.11.0",
     "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "4",
-    "jest": "^27.0.4",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.78.1",
-    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.22",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.33.0",
-    "stylelint": "9.3.0",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.1.0",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "rollup-plugin-sass": "^1.2.13"
+    "stylelint": "^14.4.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "typescript": "^4.1.0"
   }
 }
