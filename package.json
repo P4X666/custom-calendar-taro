@@ -1,13 +1,33 @@
 {
-  "name": "calendar",
-  "version": "1.0.0",
-  "private": true,
-  "description": "日历",
+  "name": "custom-calendar-taro",
+  "version": "2.0.0",
+  "private": false,
+  "description": "一款基于taro3的自定义日历组件，支持周，月的展示",
   "templateInfo": {
     "name": "default",
     "typescript": true,
     "css": "less"
   },
+  "license": "MIT",
+  "keywords": [
+    "taro3",
+    "react",
+    "ts",
+    "custom-calendar-taro"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/P4X666/custom-calendar-taro"
+  },
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "dist/index.css"
+  ],
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -26,52 +46,70 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "clean": "rimraf ./dist",
+    "lint": "eslint --ext ts,tsx src --max-warnings 5",
+    "build-es": "npm run clean && rollup --config rollup/rollup.esm.config.js"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
-  "dependencies": {
+  "author": "pengshixing",
+  "peerDependencies": {
+    "@tarojs/components": "^3.0.0",
+    "@tarojs/taro": "^3.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
     "@babel/runtime": "^7.7.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@tarojs/cli": "3.5.4",
     "@tarojs/components": "3.5.4",
     "@tarojs/helper": "3.5.4",
-    "@tarojs/plugin-platform-weapp": "3.5.4",
+    "@tarojs/plugin-framework-react": "3.5.4",
     "@tarojs/plugin-platform-alipay": "3.5.4",
-    "@tarojs/plugin-platform-tt": "3.5.4",
-    "@tarojs/plugin-platform-swan": "3.5.4",
     "@tarojs/plugin-platform-jd": "3.5.4",
     "@tarojs/plugin-platform-qq": "3.5.4",
+    "@tarojs/plugin-platform-swan": "3.5.4",
+    "@tarojs/plugin-platform-tt": "3.5.4",
+    "@tarojs/plugin-platform-weapp": "3.5.4",
+    "@tarojs/react": "3.5.4",
     "@tarojs/router": "3.5.4",
     "@tarojs/runtime": "3.5.4",
     "@tarojs/shared": "3.5.4",
     "@tarojs/taro": "3.5.4",
     "@tarojs/taro-h5": "3.5.4",
-    "@tarojs/plugin-framework-react": "3.5.4",
-    "@tarojs/react": "3.5.4",
-    "react-dom": "^18.0.0",
-    "react": "^18.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.0",
-    "@tarojs/cli": "3.5.4",
-    "@types/webpack-env": "^1.13.6",
-    "@types/react": "^18.0.0",
-    "webpack": "5.69.0",
     "@tarojs/webpack5-runner": "3.5.4",
-    "babel-preset-taro": "3.5.4",
-    "eslint-config-taro": "3.5.4",
-    "eslint": "^8.12.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
-    "react-refresh": "^0.11.0",
-    "eslint-plugin-react": "^7.8.2",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "stylelint": "^14.4.0",
-    "@typescript-eslint/parser": "^5.20.0",
+    "@types/react": "^18.0.0",
+    "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "typescript": "^4.1.0"
+    "@typescript-eslint/parser": "^5.20.0",
+    "babel-preset-taro": "3.5.4",
+    "eslint": "^8.12.0",
+    "eslint-config-taro": "3.5.4",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^8.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-refresh": "^0.11.0",
+    "rollup": "^2.79.0",
+    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.22",
+    "rollup-plugin-less": "^1.1.3",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.34.0",
+    "stylelint": "^14.4.0",
+    "typescript": "^4.8.3",
+    "webpack": "5.69.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^14.1.0"
   }
 }
