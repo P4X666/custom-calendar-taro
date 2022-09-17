@@ -1,5 +1,5 @@
 import { View } from "@tarojs/components";
-import { FC } from "react";
+import React, { FC } from "react";
 import { DayProps } from "../type";
 import "./index.less";
 
