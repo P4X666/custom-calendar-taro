@@ -216,3 +216,14 @@ export const fillWithZero = (target: number): string | number => {
 export const textFormat = (dateDetail: DateDetail) => {
   return `${dateDetail.year}-${fillWithZero(dateDetail.month)}-${fillWithZero(dateDetail.day)}`
 }
+/** 比较两个日期是否一致 */
+export const matchDate = (date1: DateDetail, date2: DateDetail) => {
+  if (
+    date1.year === date2.year &&
+    date1.month === date2.month &&
+    date1.day === date2.day
+    ) {
+    return true;
+  }
+  return false;
+}
