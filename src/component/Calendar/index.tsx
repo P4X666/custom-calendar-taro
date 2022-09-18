@@ -62,14 +62,24 @@ const CustCalendar = forwardRef<CustCalendarInstance,CustCalendarProps>((props, 
 
   /** 日历滑块中的数据 */
   const daysArr: DayType[][] = useMemo(() => {
-    const { year, month, day } = dayViewDetail
-    const curMonthDays: DayType[] = view === 'month'
-      ? getMonthDays(year, month, startWeekDay)
-      : getWeekDays(year, month, day, startWeekDay);
-    return [curMonthDays, curMonthDays, curMonthDays]
-  }, [dayViewDetail, startWeekDay, view])
-
-  console.log(daysArr, 'render -------------------------------->');
+    const curMonthDays: DayType[] =
+      view === 'month'
+        ? getMonthDays(dayViewDetail.year, dayViewDetail.month, startWeekDay)
+        : getWeekDays(
+            dayViewDetail.year,
+            dayViewDetail.month,
+            dayViewDetail.day,
+            startWeekDay
+        );
+    
+    return [curMonthDays, curMonthDays, curMonthDays];
+  }, [
+    dayViewDetail.year,
+    dayViewDetail.month,
+    dayViewDetail.day,
+    startWeekDay,
+    view
+  ]);
   
   const weekList = useMemo(() => getWeekDayList(startWeekDay), [startWeekDay])
   

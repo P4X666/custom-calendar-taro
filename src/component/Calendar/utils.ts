@@ -115,11 +115,11 @@ export const getWeekDays = (year: number, month: number = 1, day: number, startW
   let firstWeekDay = getWeekDay(year, month, day);
   let _day = day;
   let _firstWeekDay = firstWeekDay;
+
+  let i = 0;
   // 第一次循环 将当天及其之前直到 startWeekDay 的所有天数填充
-  while (true) {
-    if (_firstWeekDay < startWeekDay) {
-      break;
-    }
+  while (i < 7) {
+    i++;
     // 当 _day 为 0 时，说明该天为上个月的最后一天
     if (_day === 0) {
       const preDateInfo = getCountDays(year, month - 1);
