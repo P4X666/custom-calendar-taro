@@ -114,12 +114,9 @@ export const getWeekDays = (year: number, month: number = 1, day: number, startW
   const days: DayType[] = [];
   let firstWeekDay = getWeekDay(year, month, day);
   let _day = day;
-  let _firstWeekDay = firstWeekDay;
-
-  let i = 0;
+  let _firstWeekDay = Math.abs(firstWeekDay - 7);
   // 第一次循环 将当天及其之前直到 startWeekDay 的所有天数填充
-  while (i < 7) {
-    i++;
+  while (_firstWeekDay > 0) {
     // 当 _day 为 0 时，说明该天为上个月的最后一天
     if (_day === 0) {
       const preDateInfo = getCountDays(year, month - 1);
@@ -143,39 +140,41 @@ export const getWeekDays = (year: number, month: number = 1, day: number, startW
     _day--;
     _firstWeekDay--;
   }
-  _day = day;
-  _firstWeekDay = firstWeekDay;
-  const curDateInfo = getCountDays(year, month);
-  // 第二次循环 将当天以后剩余的周天数填充
-  while (true) {
-    _day++;
-    _firstWeekDay++;
-    if (_firstWeekDay > startWeekDay + 6) {
-      break;
-    }
-    // 当 _day 比当前月总天数还多时，说明该天已经进入下个月
-    if (_day > curDateInfo.days) {
-      const nextDateInfo = getCountDays(year, month+1);
-      const nextYear = nextDateInfo.year;
-      const nextMonth = nextDateInfo.month;
-      _day = 1;
-      days.push({
-        year: nextYear,
-        month: nextMonth,
-        day: _day,
-        weekDay: getWeekDay(nextYear, nextMonth, _day)
-      })
-    } else {
-      const lastDay = days[days.length - 1];
-      if (lastDay && lastDay.month > month) {
-        month = lastDay.month;
+  if (days.length < 7) {
+    _day = day;
+    _firstWeekDay = firstWeekDay;
+    const curDateInfo = getCountDays(year, month);
+    // 第二次循环 将当天以后剩余的周天数填充
+    while (true) {
+      _day++;
+      _firstWeekDay++;
+      if (_firstWeekDay > startWeekDay + 6) {
+        break;
       }
-      days.push({
-        year,
-        month,
-        day: _day,
-        weekDay: getWeekDay(year, month, _day)
-      })
+      // 当 _day 比当前月总天数还多时，说明该天已经进入下个月
+      if (_day > curDateInfo.days) {
+        const nextDateInfo = getCountDays(year, month + 1);
+        const nextYear = nextDateInfo.year;
+        const nextMonth = nextDateInfo.month;
+        _day = 1;
+        days.push({
+          year: nextYear,
+          month: nextMonth,
+          day: _day,
+          weekDay: getWeekDay(nextYear, nextMonth, _day)
+        })
+      } else {
+        const lastDay = days[days.length - 1];
+        if (lastDay && lastDay.month > month) {
+          month = lastDay.month;
+        }
+        days.push({
+          year,
+          month,
+          day: _day,
+          weekDay: getWeekDay(year, month, _day)
+        })
+      }
     }
   }
   return days;

@@ -54,7 +54,7 @@ const CustCalendar = forwardRef<CustCalendarInstance,CustCalendarProps>((props, 
     setCurrentCarouselIndex((currentCarouselIndex + 2) % 3)
   };
   const onSwiperChange = (e: any) => {
-    if (e.detail.source === "touch") {
+    if (e.detail.source === 'touch') {
       const currentIndex = e.detail.current;
       (currentCarouselIndex + 1) % 3 === currentIndex ? goNext() : goPre();
     }
@@ -80,6 +80,8 @@ const CustCalendar = forwardRef<CustCalendarInstance,CustCalendarProps>((props, 
     startWeekDay,
     view
   ]);
+
+  console.log(daysArr, 'render -------------------------------->');
   
   const weekList = useMemo(() => getWeekDayList(startWeekDay), [startWeekDay])
   
