@@ -1,11 +1,11 @@
-import { PropsWithChildren, FC, useRef, MutableRefObject, useState } from "react";
+import React, { PropsWithChildren, FC, useRef, MutableRefObject, useState } from "react";
 import { Button, View } from "@tarojs/components";
-import CustCalendar from "src/component/Calendar";
-import { CustCalendarInstance } from "src/component/Calendar/type";
+import CustCalendar from "custom-calendar-taro";
+import 'custom-calendar-taro/dist/index.css';
 import "./index.less";
 
 const Index: FC<PropsWithChildren> = () => {
-  const custCalendarInstance = useRef() as MutableRefObject<CustCalendarInstance>;
+  const custCalendarInstance = useRef() as MutableRefObject<any>;
 
   const [type, setType] = useState<'week' | 'month'>('week')
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { View } from "@tarojs/components";
 import Day from "../Day";
 import "./index.less";

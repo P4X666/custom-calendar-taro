@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "es6",
+    "module": "esnext",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -12,15 +12,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "sourceMap": true,
+    // "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowJs": true,
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "resolveJsonModule": true
+    // "typeRoots": ["node_modules/@types"]
   },
   "include": ["./src", "./types"],
   "compileOnSave": false
