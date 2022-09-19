@@ -1,5 +1,8 @@
 config
 *.config.js
+*.config.ts
+*.test.js
+*.test.ts
 *.json
 *.lock
 node_modules
@@ -7,3 +10,4 @@ dist
 build
 config
 scripts
+tests
