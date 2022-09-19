@@ -8,8 +8,8 @@ type DaysType = {
   /** 该月总共多少天 */
   days: number
 }
-/** 获取下个月的年月 */
-export const getNextMonthViewDetail = (year: number, month: number) => {
+/** 获取当前月的年月 */
+export const getCurMonthViewDetail = (year: number, month: number) => {
   let curMonth = month - 1;
   if (curMonth > 11) {
     year++;
@@ -26,8 +26,8 @@ export const getNextMonthViewDetail = (year: number, month: number) => {
 }
 type DateDetail = Omit<DayType, 'weekDay'>
 
-/** 获取下个周的年月日 */
-export const getNextWeekViewDetail = (year: number, month: number, day: number): DateDetail => {
+/** 获取当前周的年月日 */
+export const getCurWeekViewDetail = (year: number, month: number, day: number): DateDetail => {
   const curMonth = month - 1;
   const curDate = new Date();
   curDate.setFullYear(year, curMonth, day);
@@ -39,8 +39,8 @@ export const getNextWeekViewDetail = (year: number, month: number, day: number):
 }
 
 /** 获取指定月有多少天 */
-const getCountDays = (year: number, month: number): DaysType => {
-  const cur = getNextMonthViewDetail(year, month);
+export const getCountDays = (year: number, month: number): DaysType => {
+  const cur = getCurMonthViewDetail(year, month);
   const curMonth = cur.month - 1;
   const curDate = new Date();
   // 将日期设置为32，表示自动计算为下个月的第几天（这取决于当前月份有多少天）
@@ -53,14 +53,14 @@ const getCountDays = (year: number, month: number): DaysType => {
   return result;
 };
 // 获取指定天是周几
-const getWeekDay = (year: number, month: number, day: number): WeekDayType => {
+export const getWeekDay = (year: number, month: number, day: number): WeekDayType => {
   const curDate = new Date();
   curDate.setFullYear(year, month - 1, day);
   return curDate.getDay() as WeekDayType;
 };
 
-const fillDays = (days: DayType[], year: number, month: number, day: number) => {
-  days.push({
+const fillDays = (days: DayType[], year: number, month: number, day: number, method = 'push') => {
+  days[method]({
     year,
     month,
     day,
@@ -69,7 +69,7 @@ const fillDays = (days: DayType[], year: number, month: number, day: number) => 
 }
 
 /** 获取指定月的天的数据 */
-export const getMonthDays = (year: number, month: number = 1, startWeekDay: number = 1): DayType[] => {
+export const getMonthDays = (year: number, month: number, startWeekDay: number = 1): DayType[] => {
   const days: DayType[] = [];
   const curMonthDays = getCountDays(year, month).days;
   const firstWeekDay = getWeekDay(year, month, 1);
@@ -110,11 +110,11 @@ export const getMonthDays = (year: number, month: number = 1, startWeekDay: numb
  * 获取指定周的天的数据
  * 默认取当前月的第一天所在周
  *  */
-export const getWeekDays = (year: number, month: number = 1, day: number, startWeekDay: number = 1): DayType[] => {
+export const getWeekDays = (year: number, month: number, day: number, startWeekDay: number = 1): DayType[] => {
   const days: DayType[] = [];
   let firstWeekDay = getWeekDay(year, month, day);
   let _day = day;
-  let _firstWeekDay = Math.abs(firstWeekDay - 7);
+  let _firstWeekDay = firstWeekDay || 7;
   // 第一次循环 将当天及其之前直到 startWeekDay 的所有天数填充
   while (_firstWeekDay > 0) {
     // 当 _day 为 0 时，说明该天为上个月的最后一天
@@ -123,19 +123,9 @@ export const getWeekDays = (year: number, month: number = 1, day: number, startW
       const preYear = preDateInfo.year;
       const preMonth = preDateInfo.month;
       _day = preDateInfo.days;
-      days.unshift({
-        year: preYear,
-        month: preMonth,
-        day: _day,
-        weekDay: getWeekDay(preYear, preMonth, _day)
-      })
+      fillDays(days, preYear, preMonth, _day, 'unshift');
     } else {
-      days.unshift({
-        year,
-        month,
-        day: _day,
-        weekDay: getWeekDay(year, month, _day)
-      })
+      fillDays(days, year, month, _day, 'unshift');
     }
     _day--;
     _firstWeekDay--;
@@ -157,23 +147,13 @@ export const getWeekDays = (year: number, month: number = 1, day: number, startW
         const nextYear = nextDateInfo.year;
         const nextMonth = nextDateInfo.month;
         _day = 1;
-        days.push({
-          year: nextYear,
-          month: nextMonth,
-          day: _day,
-          weekDay: getWeekDay(nextYear, nextMonth, _day)
-        })
+        fillDays(days, nextYear, nextMonth, _day);
       } else {
         const lastDay = days[days.length - 1];
-        if (lastDay && lastDay.month > month) {
+        if (lastDay.month > month) {
           month = lastDay.month;
         }
-        days.push({
-          year,
-          month,
-          day: _day,
-          weekDay: getWeekDay(year, month, _day)
-        })
+        fillDays(days, year, month, _day);
       }
     }
   }

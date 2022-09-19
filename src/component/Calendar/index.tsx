@@ -1,7 +1,7 @@
 import { Picker, View } from "@tarojs/components";
 import React, { forwardRef, useCallback, useImperativeHandle, useMemo, useState } from "react";
 import { CustCalendarInstance, CustCalendarProps, DayType } from "./type";
-import { fillWithZero, getCurrentDayDetail, getMonthDays, getNextMonthViewDetail, getNextWeekViewDetail, getWeekDayList, getWeekDays, textFormat } from "./utils";
+import { fillWithZero, getCurrentDayDetail, getMonthDays, getCurMonthViewDetail, getCurWeekViewDetail, getWeekDayList, getWeekDays, textFormat } from "./utils";
 import "./index.less";
 import CalendarBody from "./CalendarBody";
 
@@ -37,18 +37,17 @@ const CustCalendar = forwardRef<CustCalendarInstance,CustCalendarProps>((props, 
 
   const goNext = () => {
     const nextViewDetail = view === "month"
-      ? getNextMonthViewDetail(dayViewDetail.year, dayViewDetail.month+1)
-      : getNextWeekViewDetail(dayViewDetail.year, dayViewDetail.month, dayViewDetail.day + 7);
+      ? getCurMonthViewDetail(dayViewDetail.year, dayViewDetail.month+1)
+      : getCurWeekViewDetail(dayViewDetail.year, dayViewDetail.month, dayViewDetail.day + 7);
 
     const dayView = { ...dayViewDetail, ...nextViewDetail };
-    console.log(nextViewDetail, dayView, 'goNext');
     setDayViewDetail(dayView);
     setCurrentCarouselIndex((currentCarouselIndex + 1) % 3);
   };
   const goPre = () => {
     const preViewDetail = view === "month"
-      ? getNextMonthViewDetail(dayViewDetail.year, dayViewDetail.month - 1)
-      : getNextWeekViewDetail(dayViewDetail.year, dayViewDetail.month, dayViewDetail.day - 7);
+      ? getCurMonthViewDetail(dayViewDetail.year, dayViewDetail.month - 1)
+      : getCurWeekViewDetail(dayViewDetail.year, dayViewDetail.month, dayViewDetail.day - 7);
     const dayView = { ...dayViewDetail, ...preViewDetail };
     setDayViewDetail(dayView);
     setCurrentCarouselIndex((currentCarouselIndex + 2) % 3)

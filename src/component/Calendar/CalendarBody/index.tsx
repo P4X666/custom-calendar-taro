@@ -18,7 +18,7 @@ const CalendarBody = props => {
   return (
     <Swiper
       vertical={isVertical}
-      circular={false}
+      circular
       current={currentCarouselIndex}
       onChange={onSwiperChange}
       style={{
