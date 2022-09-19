@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactElement } from "react";
 
 /** 周几 取值范围 0 | 1 | 2 | 3 | 4 | 5 | 6 */
 export type WeekDayType = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -78,6 +78,10 @@ export interface DayProps extends StyleControlProps, DayType {
    * extraInfo的文本
    */
   extraInfoText?: string;
+  /**
+   * 自定义渲染日期的方法
+   */
+  custDayRender?: (props: DayProps)=> ReactElement
 }
 
 export interface CustCalendarProps {

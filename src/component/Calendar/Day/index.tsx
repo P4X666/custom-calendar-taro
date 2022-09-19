@@ -13,16 +13,20 @@ const Day: FC<DayProps> = props => {
     disabled,
     notCurMonth = false,
     onDayLongPress,
-    onDayClick
+    onDayClick,
+    custDayRender
   } = props;
 
   let dayClass = "day-wrapper";
+  /** 日期被选中的样式 */
   if (selected) {
     dayClass += " day-selected";
   }
+  /** 日期被禁用的样式 */
   if (disabled) {
     dayClass += " day-disabled";
   }
+  /** 非本月的日期的样式 */
   if (notCurMonth) {
     dayClass += " day-not-cur-month";
   }
@@ -34,6 +38,9 @@ const Day: FC<DayProps> = props => {
       onDayClick?.({ year, month, day, weekDay });
     }
   };
+  if (custDayRender) {
+    return custDayRender(props);
+  }
   return (
     <View className={dayClass} onLongPress={_onLongPress} onClick={_onClick}>
       <View className='day-content'>
