@@ -3,13 +3,13 @@ import {
   getCurWeekViewDetail,
   getCountDays,
   getWeekDayList,
-  fillWithZero,
   textFormat,
   matchDate,
   getWeekDay,
   getMonthDays,
   getWeekDays,
-  getCurrentDayDetail
+  getCurrentDayDetail,
+  string2Date
 } from '../utils';
 // 2022年的日历
 // prettier-ignore
@@ -158,32 +158,20 @@ describe('getWeekDayList 测试', () => {
   });
 });
 
-describe('fillWithZero 测试', () => {
-  it('一位', () => {
-    const weeks = fillWithZero(0);
-    expect(weeks).toBe('00');
-  });
-
-  test('两位', () => {
-    const weeks = fillWithZero(11);
-    expect(weeks).toBe(11);
-  });
-});
-
 describe('textFormat 测试', () => {
   it('月份一位日期一位', () => {
-    const text = textFormat({ year: 2022, month: 9, day: 8 });
+    const text = textFormat({ year: 2022, month: 9, day: 8 }, 'YYYY-MM-DD');
     expect(text).toBe('2022-09-08');
   });
 
   test('月份二位日期一位', () => {
-    const text = textFormat({ year: 2022, month: 10, day: 8 });
+    const text = textFormat({ year: 2022, month: 10, day: 8 }, 'YYYY-MM-DD');
     expect(text).toBe('2022-10-08');
   });
 
   test('月份二位日期二位', () => {
-    const text = textFormat({ year: 2022, month: 10, day: 18 });
-    expect(text).toBe('2022-10-18');
+    const text = textFormat({ year: 2022, month: 10, day: 18 }, 'YYYY/MM/DD');
+    expect(text).toBe('2022/10/18');
   });
 });
 
@@ -303,4 +291,25 @@ describe('getCurrentDayDetail', () => {
     };
     expect(days).toEqual(curDate);
   });
+});
+
+describe('string2Date 测试', () => {
+  it('正常获取年月日', () => {
+    const text = string2Date('2022-9-25');
+    expect(text).toEqual({
+      year: 2022,
+      month: 9,
+      day: 25
+    });
+  });
+
+  test('月份二位日期一位', () => {
+    const text = string2Date('2022-09');
+    expect(text).toEqual({
+      year: 2022,
+      month: 9,
+      day: 1
+    });
+  });
+
 });

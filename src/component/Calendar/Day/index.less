@@ -1,12 +1,41 @@
-.day-wrapper{
-  width: calc(100% / 7);
+.day-wrapper {
+  position: relative;
+  width: 14%;
   height: 3rem;
   text-align: center;
-  .day-content{
+  .day-content {
+    height: 2rem;
+    line-height: 2rem;
+    width: 2rem;
     position: relative;
-    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .day-marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: #90b1ef;
   }
 }
-.day-wrapper.day-not-cur-month{
+.day-wrapper.day-not-cur-month {
   color: #999;
+}
+.day-wrapper.day-selected {
+  .day-content{
+    color: #fff;
+    background-color: #056de8;
+    border-radius: 50%;
+  }
+}
+/** 当天的颜色要浅一些 */
+.day-today{
+  .day-content{
+    color: #fff;
+    background-color: #346fc2;
+    border-radius: 50%;
+  }
 }

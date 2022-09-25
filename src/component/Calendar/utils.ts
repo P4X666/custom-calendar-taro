@@ -1,13 +1,6 @@
-import { DayType, WeekDayType } from "./type";
+import dayjs from "dayjs";
+import { DateDetail, DaysType, DayType, WeekDayType } from "./type";
 
-type DaysType = {
-  /** 年份 */
-  year: number
-  /** 月份 */
-  month: number
-  /** 该月总共多少天 */
-  days: number
-}
 /** 获取当前月的年月 */
 export const getCurMonthViewDetail = (year: number, month: number) => {
   let curMonth = month - 1;
@@ -24,7 +17,6 @@ export const getCurMonthViewDetail = (year: number, month: number) => {
     month: curMonth + 1,
   }
 }
-type DateDetail = Omit<DayType, 'weekDay'>
 
 /** 获取当前周的年月日 */
 export const getCurWeekViewDetail = (year: number, month: number, day: number): DateDetail => {
@@ -187,13 +179,8 @@ export const getCurrentDayDetail = (): DayType => {
   }
 }
 
-/** 填充 0 */
-export const fillWithZero = (target: number): string | number => {
-  return (target + '').length === 1 ? `0${target}` : target;
-}
-
-export const textFormat = (dateDetail: DateDetail) => {
-  return `${dateDetail.year}-${fillWithZero(dateDetail.month)}-${fillWithZero(dateDetail.day)}`
+export const textFormat = (dateDetail: DateDetail, format: string) => {
+  return dayjs(`${dateDetail.year}-${dateDetail.month}-${dateDetail.day}`).format(format);
 }
 /** 比较两个日期是否一致 */
 export const matchDate = (date1: DateDetail, date2: DateDetail) => {
@@ -201,8 +188,18 @@ export const matchDate = (date1: DateDetail, date2: DateDetail) => {
     date1.year === date2.year &&
     date1.month === date2.month &&
     date1.day === date2.day
-    ) {
+  ) {
     return true;
   }
   return false;
+}
+
+/** 将字符串日期转为 DateDetail */
+export const string2Date = (str: string): DateDetail => {
+  const date = dayjs(str);
+  return {
+    year: date.year(),
+    month: date.month() + 1,
+    day: date.date()
+  }
 }
