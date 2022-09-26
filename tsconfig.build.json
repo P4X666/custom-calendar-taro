@@ -2,15 +2,12 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext",
-    "target": "es5",
+    "target": "es6",
     "declaration": true,
     "jsx": "react",
-    "moduleResolution":"Node",
-    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/components/**/*.ts",
-    "src/components/**/*.tsx"
-  ],
-  "exclude": ["src/pages"]
+  "include": ["src/component/**/*.ts", "src/component/**/*.tsx"],
+  "exclude": ["src/pages", "src/utils"]
 }

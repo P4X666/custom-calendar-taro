@@ -1,5 +1,5 @@
-import basicConfig from './rollup.config'
 import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle"
+import basicConfig from './rollup.config'
 
 const config = {
   ...basicConfig,

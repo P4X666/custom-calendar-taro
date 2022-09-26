@@ -1,0 +1,33 @@
+.cust-calendar {
+  .week-desc {
+    display: flex;
+    margin-bottom: 16px;
+    .week-desc-item {
+      width: calc(100% / 7);
+      text-align: center;
+    }
+  }
+  .calendar-picker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 36px;
+    .calendar-arrow-wrap{
+      width: 48px;
+    }
+    .calendar-arrow {
+      display: inline-block;
+      border-top: 4px solid;
+      border-right: 4px solid;
+      width: 14px;
+      height: 14px;
+      border-color: #666;
+    }
+    .calendar-arrow-left {
+      transform: rotate(-135deg);
+    }
+    .calendar-arrow-right {
+      transform: rotate(45deg);
+    }
+  }
+}
