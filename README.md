@@ -75,7 +75,9 @@ export default Index;
 
 因为业务的复杂多变，通常会有自定义的样式控制  
 
-详细使用方式可见 pages 下的 custRender
+**详细使用方式可见 pages 下的 custRender**
+
+![](https://github.com/P4X666/custom-calendar-taro/raw/main/doc/custRender.png)
 
 ```tsx
 import Taro, { FunctionComponent } from "@tarojs/taro";
