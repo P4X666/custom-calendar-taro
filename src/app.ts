@@ -1,4 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
+import 'custom-calendar-taro/dist/index.css';
 import './app.less'
 
 class App extends Component<PropsWithChildren> {

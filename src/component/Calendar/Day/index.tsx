@@ -18,11 +18,12 @@ const Day: FC<DayProps> = props => {
     isToday,
     onDayLongPress,
     onDayClick,
-    custDayRender
+    custDayRender,
+    extraInfo
   } = props;
 
-  let dayClass = 'day-wrapper';
-  
+  let dayClass = '';
+
   if (isToday) {
     dayClass += ' day-today';
   }
@@ -37,7 +38,7 @@ const Day: FC<DayProps> = props => {
   if (notCurMonth) {
     dayClass += ' day-not-cur-month';
   }
-  
+
   const _onLongPress = () => {
     if (!disabled) {
       onDayLongPress?.({ year, month, day, weekDay }, dateFormate);
@@ -48,37 +49,46 @@ const Day: FC<DayProps> = props => {
       onDayClick?.({ year, month, day, weekDay }, dateFormate);
     }
   };
-  if (custDayRender) {
-    return custDayRender(props);
-  }
+  console.log(custDayRender, 'custDayRendercustDayRender');
+  
   return (
-    <View
-      className={dayClass}
-      style={selected ? { backgroundColor: selectedDateColor } : {}}
-      onLongPress={_onLongPress}
-      onClick={_onClick}
-    >
-      <View className='day-content'>
-        {hasMarker && <View className='day-marker'></View>}
-        <View>
-          {/* 日期 */}
-          {day}
+    <View onLongPress={_onLongPress} onClick={_onClick} className='day-wrapper'>
+      {!custDayRender ? (
+        <View
+          className={dayClass}
+          style={selected ? { backgroundColor: selectedDateColor } : {}}
+        >
+          <View className='day-content'>
+            {hasMarker && <View className='day-marker'></View>}
+            <View>
+              {/* 日期 */}
+              {day}
+            </View>
+          </View>
+          <View
+            className='day-extrainfo'
+            style={extraInfo?.color ? { color: extraInfo?.color } : {}}
+          >
+            {extraInfo?.text}
+          </View>
         </View>
-      </View>
+      ) : (
+        custDayRender(props)
+      )}
     </View>
   );
 };
 
 const areEquals = (preProps: DayProps, nextProps: DayProps) => {
   if (
-    preProps.dateFormate === nextProps.dateFormate
-    && preProps.disabled === nextProps.disabled
-    && preProps.selected === nextProps.selected
-    && preProps.hasMarker === nextProps.hasMarker
+    preProps.dateFormate === nextProps.dateFormate &&
+    preProps.disabled === nextProps.disabled &&
+    preProps.selected === nextProps.selected &&
+    preProps.hasMarker === nextProps.hasMarker
   ) {
     return true;
   }
   return false;
-}
+};
 
 export default React.memo(Day, areEquals);

@@ -1,7 +1,8 @@
 import CustCalendar from './src/component/Calendar';
-import { CustCalendarInstance } from './src/component/Calendar/type';
+import { CustCalendarInstance, DayProps } from './src/component/Calendar/type';
 
 export {
   CustCalendarInstance,
+  DayProps,
   CustCalendar as default
 };

@@ -8,7 +8,7 @@ import { DaysProps } from "../type";
 
 const Days:FC<DaysProps> = (props) => {
   const { days, view, dayViewDetail, today, marks, minDate,
-    maxDate, format, selectedDate, ...restProps } = props
+    maxDate, format, selectedDate, extraInfo: extraInfoArr, ...restProps } = props
   
   return <View className='days-wrapper'>
     {
@@ -27,18 +27,21 @@ const Days:FC<DaysProps> = (props) => {
         dayProps.dateFormate = dateFormate;
         /** 是否被选中 */
         const selected = dayjs(selectedDate).isSame(`${year}-${month}-${day}`);
-        const hasMarker = !!marks?.find(ele => ele.value === dateFormate);
+        const hasMarker = !!marks?.find(ele => dayjs(ele.value).isSame(dateFormate));
         /** 是否为当天 */
         const isToday = matchDate(today, { year, month, day });
-
-        const disabled = dayjs(dateFormate) < dayjs(minDate) || dayjs(dateFormate) > dayjs(maxDate)
+        /** 禁止日期 */
+        const disabled = dayjs(dateFormate) < dayjs(minDate) || dayjs(dateFormate) > dayjs(maxDate);
+        
+        const extraInfo = extraInfoArr?.find(ele => dayjs(ele.value).isSame(dateFormate))
         const publicProps = {
           year, month, day, weekDay,
           selected,
           hasMarker,
           isToday,
           disabled,
-          dateFormate
+          dateFormate,
+          extraInfo,
         }
         return <Day key={dateFormate} {...dayProps} {...restProps} {...publicProps} />
       })

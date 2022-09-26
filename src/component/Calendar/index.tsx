@@ -50,7 +50,10 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       maxDate = '2100-12-31',
       isSwiper = true,
       onDayClick,
-      extraInfo=[]
+      extraInfo = [],
+      custDayRender,
+      className,
+      custWeekRender
     } = props;
     /** 当前锁定的 SwiperItem */
     const [currentCarouselIndex, setCurrentCarouselIndex] = useState(1);
@@ -126,7 +129,7 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
     ]);
     /** picker 切换 更新当前日历 */
     const onPickerChange = (e: any) => {
-      setDayViewDetail(string2Date(dayjs(e.detail.value).format(format)))
+      setDayViewDetail(string2Date(dayjs(e.detail.value).format(format)));
     };
     const getCurrentMonth = () => {
       return dayjs(`${dayViewDetail.year}-${dayViewDetail.month}`).format(
@@ -152,11 +155,12 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       minDate,
       maxDate,
       format,
-      extraInfo
+      extraInfo,
+      custDayRender
     };
 
     return (
-      <View className='cust-calendar'>
+      <View className={`cust-calendar ${className}`}>
         {!hideController && (
           <View className='calendar-picker'>
             {!hideArrow && (
@@ -197,22 +201,22 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
           {weekList.map(item => {
             return (
               <View key={item} className='week-desc-item'>
-                {item}
+                {custWeekRender?custWeekRender(item): item}
               </View>
             );
           })}
         </View>
-        <Swiper
-          vertical={isVertical}
-          circular
-          current={currentCarouselIndex}
-          onChange={onSwiperChange}
-          style={{
-            height: view === 'month' ? monthWrapHeigh : weekWrapHeight
-          }}
-        >
-          {isSwiper ? (
-            daysArr.map((item, index) => {
+        {isSwiper ? (
+          <Swiper
+            vertical={isVertical}
+            circular
+            current={currentCarouselIndex}
+            onChange={onSwiperChange}
+            style={{
+              height: view === 'month' ? monthWrapHeigh : weekWrapHeight
+            }}
+          >
+            {daysArr.map((item, index) => {
               return (
                 <SwiperItem key={view + index}>
                   <View>
@@ -222,11 +226,11 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
                   </View>
                 </SwiperItem>
               );
-            })
-          ) : (
-            <Days days={daysArr[0]} {...bodyProps} />
-          )}
-        </Swiper>
+            })}
+          </Swiper>
+        ) : (
+          <Days days={daysArr[1]} {...bodyProps} />
+        )}
       </View>
     );
   }

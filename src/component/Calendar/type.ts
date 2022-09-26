@@ -29,24 +29,40 @@ export type CalendarMark = {
   color?: string;
 };
 
-interface StyleControlProps {
+export type DayProps = DayType & Omit<DaysProps,
+  'days' | 'view' | 'extraInfo' | 'dayViewDetail' | 'today'
+> & {
   /**
    * 是否被选中
    * @default false
    */
   selected: boolean;
-
-  /** 是否范围选择模式并且endDateStr不为空 **/
-  // isMultiSelectAndFinish: boolean;
   /**
    * 当前日期是否有mark
    * @default false
    */
   hasMarker: boolean;
   /**
-   * 当前日期是否有extraInfo，没有为-1
+   * 当前日期的 extraInfo
    */
-  // extraInfoIndex: number;
+  extraInfo?: { text: string, color: string };
+  /** 禁用日期
+   * @default false
+   */
+  disabled: boolean;
+  /** 非本月
+   * @default false
+   */
+  notCurMonth?: boolean;
+  /** 
+   * 是否为当天的日期
+   * @default false
+   *  */
+  isToday: boolean;
+  /** 格式化后的日期 */
+  dateFormate: string;
+  /** 是否范围选择模式并且endDateStr不为空 **/
+  // isMultiSelectAndFinish: boolean;
   /** 是否显示分割线 */
   // showDivider: boolean;
   /**
@@ -61,37 +77,10 @@ interface StyleControlProps {
    * 范围终点
    */
   // rangeEnd: boolean;
-  /** 禁用日期
-   * @default false
-   */
-  disabled: boolean;
-}
-export interface DayProps extends StyleControlProps, DayType {
-  /** 非本月
-   * @default false
-   */
-  notCurMonth?: boolean;
-  /** 长按事件回调 */
-  onDayLongPress?: (info: DayType, dateFormate: string) => void;
-  /** 点击事件回调 */
-  onDayClick?: (info: DayType, dateFormate: string) => any;
-  /** 选定时的背景色 */
-  selectedDateColor?: string;
-  /**
-   * 自定义渲染日期的方法
-   */
-  custDayRender?: (props: DayProps) => ReactElement,
-  /** 
-   * 是否为当天的日期
-   * @default false
-   *  */
-  isToday: boolean,
-  /** 格式化后的日期 */
-  dateFormate: string
 }
 
 export interface DaysProps extends Omit<CustCalendarProps,
-  'currentView' | 'hideArrow' | 'hideController' | 'isSwiper' | 'isVertical' | 'pickerTextGenerator' | 'isMultiSelect'
+  'currentView' | 'hideArrow' | 'hideController' | 'isSwiper' | 'isVertical' | 'pickerTextGenerator' | 'isMultiSelect' | 'className' | 'custWeekRender'
 > {
   days: DayType[];
   dayViewDetail: DateDetail;
@@ -129,8 +118,6 @@ export interface CustCalendarProps {
   selectedDateColor?: string;
   /** 是否范围选择模式 */
   isMultiSelect?: boolean;
-  /** 月份/周改变回调 */
-  onCurrentViewChange?: (value: string) => any;
   /** 范围选择完成时的回调 */
   onSelectDate?: (value: { start: string; end: string }) => any;
   /** 视图 月/周
@@ -158,7 +145,14 @@ export interface CustCalendarProps {
    */
   format?: string
 
-  extraInfo?: {value: string, text: string, color: string}[]
+  extraInfo?: { value: string, text: string, color: string }[]
+  /**
+   * 自定义渲染日期的方法
+   */
+  custDayRender?: (props: DayProps) => ReactElement,
+  custWeekRender?: (weekItem: string) => ReactElement,
+  /** 自定义 class */
+  className?: string
 }
 
 export type CustCalendarInstance = {
