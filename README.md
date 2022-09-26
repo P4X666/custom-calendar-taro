@@ -152,23 +152,23 @@ const custCalendarInstance = useRef();
 ```
 > ## 参数说明
 
-| 参数           | 说明                                                                       | 类型                                                             | 默认值           |
-| -------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------- |
-| view           | 视图模式                                                                   | `"week"`&#124;`"month"`                                          | `"month"`        |
-| selectedDate   | 当前选中的时间，格式：`YYYY-MM-DD`                                         | `string`                                                         | `Date.now()`     |
-| currentView    | 月视图时为当前视图显示的月份`YYYY-MM`，周视图下为当前显示的周内的某一天`YYYY-MM-DD`                                                | `string`                                                         | 当前系统时间年月 |
-| minDate        | 最小的可选时间，格式：`YYYY-MM-DD`                                         | `string`                                                         | `1970-01-01`     |
-| maxDate        | 最大的可选时间，格式：`YYYY-MM-DD`                                         | `string`                                                         | `null`           |
-| isSwiper       | 是否可以滑动                                                               | `boolean`                                                        | `true`           |
-| isVertical     | 是否垂直滑动                                                               | `boolean`                                                        | `false`          |
-| monthWrapHeigh  | 月视图下的高度                                                               | `string`                                                        | `19rem`          |
-| weekWrapHeight  | 周视图下的高度                                                               | `string`                                                        | `3rem`          |
-| marks          | 需要标记的时间                                                             | `Array<{value:string,color:string}>`             | `[]`             |
-| extraInfo      | 额外信息                                                                   | `Array<{value:string,text:string,color:string,fontSize:string}>` | `[]`             |
-| hideArrow      | 是否隐藏箭头                                                               | `boolean`                                                        | `false`          |
-| hideController | 是否显示控制器                                                             | `false`                                                          | `boolean`        |
-| ref        | 组件实例，[class 组件及 function 组件各自获取ref的方式](#class组件及function组件各自获取ref的方式) | `(ref:Calendar)=>any`   
-| custDayRender        | 自定义渲染日期的方法 | (props: [DayProps](#DayProps)) => ReactElement`                                        | -                |
+| 参数           | 说明                                                     | 类型                         | 默认值           |
+| -------------- | ------------------------------------------------------  | --------------------------- | ---------------- |
+| view           | 视图模式                                                 | `"week"`&#124;`"month"`    | `"month"`          |
+| selectedDate   | 当前选中的时间，格式：`YYYY-MM-DD`                        | `string`                      | `Date.now()`     |
+| currentView    | 月视图时为当前视图显示的月份`YYYY-MM`，周视图下为当前显示的周内的某一天`YYYY-MM-DD`|`string`     | 当前系统时间年月   |
+| minDate        | 最小的可选时间，格式：`YYYY-MM-DD`                           | `string`                   | `1970-01-01`     |
+| maxDate        | 最大的可选时间，格式：`YYYY-MM-DD`                           | `string`                   | `2100-12-31`     |
+| isSwiper       | 是否可以滑动                                                | `boolean`                  | `true`          |
+| isVertical     | 是否垂直滑动                                                | `boolean`                  | `false`          |
+| monthWrapHeigh  | 月视图下的高度                                             | `string`                   | `19rem`          |
+| weekWrapHeight  | 周视图下的高度                                             | `string`                   | `3rem`          |
+| marks          | 需要标记的时间                                            | `Array<{value:string,color:string}>` | `[]`    |
+| extraInfo      | 额外信息                      | `Array<{value:string,text:string,color:string,fontSize:string}>` | `[]`    |
+| hideArrow      | 是否隐藏箭头                                              | `boolean`                    | `false`          |
+| hideController | 是否显示控制器                                               | `boolean`                  | `false`        |
+| ref        | 组件实例，[class 组件及 function 组件各自获取ref的方式](#class组件及function组件各自获取ref的方式) | `(ref:Calendar)=>any` | - |  
+| custDayRender        | 自定义渲染日期的方法 | (props: [DayProps](#DayProps)) => ReactElement`                                        | -                | -                |
 
 > ## 事件说明
 
@@ -184,13 +184,13 @@ const custCalendarInstance = useRef();
 
 每个单元格包含的所有信息
 
-| 参数         | 说明                                                                            | 类型                                  |
-| ------------ | ------------------------------------------------------------------------------- | ------------------------------------- |
-| day         | 当前月的第几天 1 ~ 31                                                           | `number`                              |
-| selected | 是否被选中 | `boolean`                             |
-| hasMarker  | 当前日期是否有mark                                                                | `boolean`                              |
-| extraInfo     | 当前日期的 extraInfo                                                                      | `{text: string, color: string}`                             |
-| disabled       | 是否为禁用日期                                                                        | `boolean`                             |
-| notCurMonth | 是否为非本月                                                               | `boolean`                             |
+| 参数         | 说明                                             | 类型                                  |
+| ------------ | ----------------------------------------------- | ------------------------------------- |
+| day         | 当前月的第几天 1 ~ 31                              | `number`                              |
+| selected   | 是否被选中                                           | `boolean`                             |
+| hasMarker  | 当前日期是否有mark                                 | `boolean`                              |
+| extraInfo     | 当前日期的 extraInfo                            | `{text: string, color: string}`         |
+| disabled       | 是否为禁用日期                                  | `boolean`                             |
+| notCurMonth | 是否为非本月                                       | `boolean`                             |
 | isToday     | 是否为当天的日期                                        | `boolean`                              |
 | dateFormate     | 格式化后的日期                                        | `string`                              |
