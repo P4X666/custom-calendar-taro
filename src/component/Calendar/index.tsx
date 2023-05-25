@@ -83,7 +83,7 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       setDayViewDetail(dayView);
       setCurrentCarouselIndex((currentCarouselIndex + 1) % 3);
       // 回调当前日期
-      onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
+      !!onCurrentViewChange && onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
         format.substring(0, 7)
       ))
     };
@@ -100,7 +100,7 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       setDayViewDetail(dayView);
       setCurrentCarouselIndex((currentCarouselIndex + 2) % 3);
       // 回调当前日期
-      onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
+      !!onCurrentViewChange && onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
         format.substring(0, 7)
       ))
     };
