@@ -50,6 +50,8 @@
     "clean": "rimraf ./dist",
     "lint": "eslint --ext ts,tsx src --max-warnings 5",
     "build-es": "npm run clean && rollup --config rollup/rollup.esm.config.js",
+    "prepublishOnly": "npm run build-es",
+    "pub": "npm version patch && npm publish",
     "test": "jest --coverage"
   },
   "browserslist": [
