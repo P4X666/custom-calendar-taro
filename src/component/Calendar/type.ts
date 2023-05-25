@@ -153,6 +153,10 @@ export interface CustCalendarProps {
   custWeekRender?: (weekItem: string) => ReactElement,
   /** 自定义 class */
   className?: string
+  /**
+   * 当日期发生变化回调当前日期
+   */
+  onCurrentViewChange?: (value: string) => string
 }
 
 export type CustCalendarInstance = {

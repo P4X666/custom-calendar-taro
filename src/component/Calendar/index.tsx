@@ -53,7 +53,8 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       extraInfo = [],
       custDayRender,
       className,
-      custWeekRender
+      custWeekRender,
+      onCurrentViewChange,
     } = props;
     /** 当前锁定的 SwiperItem */
     const [currentCarouselIndex, setCurrentCarouselIndex] = useState(1);
@@ -81,6 +82,10 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       const dayView = { ...dayViewDetail, ...nextViewDetail };
       setDayViewDetail(dayView);
       setCurrentCarouselIndex((currentCarouselIndex + 1) % 3);
+      // 回调当前日期
+      onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
+        format.substring(0, 7)
+      ))
     };
     const goPre = () => {
       const preViewDetail =
@@ -94,6 +99,10 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
       const dayView = { ...dayViewDetail, ...preViewDetail };
       setDayViewDetail(dayView);
       setCurrentCarouselIndex((currentCarouselIndex + 2) % 3);
+      // 回调当前日期
+      onCurrentViewChange(dayjs(`${dayView.year}-${dayView.month}`).format(
+        format.substring(0, 7)
+      ))
     };
     const onSwiperChange = (e: any) => {
       if (e.detail.source === 'touch') {
