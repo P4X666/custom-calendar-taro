@@ -56,7 +56,7 @@ const Day: FC<DayProps> = props => {
       {!custDayRender ? (
         <View
           className={dayClass}
-          style={selected ? { backgroundColor: selectedDateColor } : {}}
+          style={selected ? `backgroundColor: ${selectedDateColor}`: ''}
         >
           <View className='day-content'>
             {hasMarker && <View className='day-marker'></View>}
@@ -67,7 +67,7 @@ const Day: FC<DayProps> = props => {
           </View>
           <View
             className='day-extrainfo'
-            style={extraInfo?.color ? { color: extraInfo?.color } : {}}
+            style={extraInfo?.color ? `color: ${extraInfo.color}` : ``}
           >
             {extraInfo?.text}
           </View>
