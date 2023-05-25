@@ -84,7 +84,8 @@ const areEquals = (preProps: DayProps, nextProps: DayProps) => {
     preProps.dateFormate === nextProps.dateFormate &&
     preProps.disabled === nextProps.disabled &&
     preProps.selected === nextProps.selected &&
-    preProps.hasMarker === nextProps.hasMarker
+    preProps.hasMarker === nextProps.hasMarker &&
+    preProps.notCurMonth === nextProps.notCurMonth
   ) {
     return true;
   }
