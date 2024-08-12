@@ -104,7 +104,8 @@ export const getMonthDays = (year: number, month: number, startWeekDay: number =
  *  */
 export const getWeekDays = (year: number, month: number, day: number, startWeekDay: number = 1): DayType[] => {
   const days: DayType[] = [];
-  let firstWeekDay = getWeekDay(year, month, day);
+  let _month = month;
+  let firstWeekDay = getWeekDay(year, _month, day);
   let _day = day;
   let _firstWeekDay = firstWeekDay || 7;
   // 第一次循环 将当天及其之前直到 startWeekDay 的所有天数填充
@@ -116,8 +117,9 @@ export const getWeekDays = (year: number, month: number, day: number, startWeekD
       const preMonth = preDateInfo.month;
       _day = preDateInfo.days;
       fillDays(days, preYear, preMonth, _day, 'unshift');
+      _month = preMonth
     } else {
-      fillDays(days, year, month, _day, 'unshift');
+      fillDays(days, year, _month, _day, 'unshift');
     }
     _day--;
     _firstWeekDay--;
