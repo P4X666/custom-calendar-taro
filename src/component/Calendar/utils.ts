@@ -109,20 +109,19 @@ export const getWeekDays = (year: number, month: number, day: number, startWeekD
   let _day = day;
   let _firstWeekDay = firstWeekDay || 7;
   // 第一次循环 将当天及其之前直到 startWeekDay 的所有天数填充
-  while (_firstWeekDay > 0) {
-    // 当 _day 为 0 时，说明该天为上个月的最后一天
+  
+   while (_firstWeekDay >= 0) {
     if (_day === 0) {
-      const preDateInfo = getCountDays(year, month - 1);
-      const preYear = preDateInfo.year;
-      const preMonth = preDateInfo.month;
-      _day = preDateInfo.days;
-      fillDays(days, preYear, preMonth, _day, 'unshift');
-      _month = preMonth
-    } else {
-      fillDays(days, year, _month, _day, 'unshift');
+      // 如果当前日期为0，表示需要回退到上一个月的最后一天
+      const preDateInfo = getCountDays(year, _month - 1)
+      _day = preDateInfo.days
+      _month = preDateInfo.month
+      year = preDateInfo.year
     }
-    _day--;
-    _firstWeekDay--;
+    // 将日期添加到 days 数组的前面
+    fillDays(days, year, _month, _day, 'unshift')
+    _day-- // 日期减1
+    _firstWeekDay-- // 一周中的位置减1
   }
   if (days.length < 7) {
     _day = day;
