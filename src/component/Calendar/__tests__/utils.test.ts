@@ -226,11 +226,11 @@ describe.each(
     'getMonthDays 测试$year,$month',
     // @ts-ignore
     ({ year, month, expected }) => {
-  it(`${year}年${month}月`, () => {
-    const days = getMonthDays(year, month).map(item => item.day);
-    expect(days).toEqual(expected);
-  });
-});
+      it(`${year}年${month}月`, () => {
+        const days = getMonthDays(year, month).map(item => item.day);
+        expect(days).toEqual(expected);
+      });
+    });
 
 describe.each(
   [
@@ -271,7 +271,18 @@ describe('getWeekDays 测试跨下个月', () => {
     expect(days).toEqual(canlendarMonth[0].slice(35, 42));
   });
 });
-
+describe('getWeekDays 测试跨下个月且初始为周一', () => {
+  it('getWeekDays', () => {
+    const days = getWeekDays(2024, 10, 1).map(item => item.day);
+    expect(days).toEqual([30, 1, 2, 3, 4, 5, 6]);
+  });
+});
+describe('getWeekDays 测试跨下个月且初始为周日', () => {
+  it('getWeekDays', () => {
+    const days = getWeekDays(2024, 10, 1, 0).map(item => item.day);
+    expect(days).toEqual([29, 30, 1, 2, 3, 4, 5]);
+  });
+});
 describe('getWeekDays 测试跨下个月且跨年', () => {
   it('getWeekDays', () => {
     const days = getWeekDays(2022, 12, 26).map(item => item.day);
