@@ -1,6 +1,7 @@
 import { Picker, Swiper, SwiperItem, View } from '@tarojs/components';
 import React, {
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useState
@@ -59,13 +60,17 @@ const CustCalendar = forwardRef<CustCalendarInstance, CustCalendarProps>(
     /** 当前锁定的 SwiperItem */
     const [currentCarouselIndex, setCurrentCarouselIndex] = useState(1);
     /** 当天的数据 */
-    const currentDayDetail = getCurrentDayDetail();
+    const currentDayDetail = useMemo(()=> getCurrentDayDetail(), []);
     console.log(currentDayDetail, 'currentDayDetail');
 
     /** 当前显示的月份/周 所包含的一个日期 YYYY-MM-DD */
     const [dayViewDetail, setDayViewDetail] = useState(
       currentView ? string2Date(currentView) : currentDayDetail
     );
+
+    useEffect(() => {
+      setDayViewDetail(currentView ? string2Date(currentView) : currentDayDetail);
+    }, [currentDayDetail, currentView])
 
     const [today] = useState(currentDayDetail);
 

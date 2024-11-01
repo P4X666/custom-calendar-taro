@@ -32,15 +32,19 @@ const Index: FC<PropsWithChildren> = () => {
   const viewCustRender = () => {
     Taro.navigateTo({url: '/pages/custRender/index'})
   }
+  const [currentView, setCurrentView] = useState('2024-11-01');
 
+  const setCurrentViewHandle = () => {
+    setCurrentView('2024-11-08');
+  }
   const unit = type === 'week' ? '周' : '月';
   return (
     <View className='index'>
       <CustCalendar
         view={type}
         ref={custCalendarInstance}
-        currentView='2022-08-24'
-        selectedDate='2022-09-24'
+        currentView={currentView}
+        selectedDate='2024-11-01'
         marks={[
           { value: '2022-09-21', color: 'red' },
           { value: '2022-09-22', color: 'pink' },
@@ -61,6 +65,7 @@ const Index: FC<PropsWithChildren> = () => {
         <Button onClick={goNext}>下一{unit}</Button>
         <Button onClick={viewHandle}>切换周和月</Button>
         <Button onClick={viewCustRender}>查看自定义渲染</Button>
+        <Button onClick={setCurrentViewHandle}>动态设置当前视图</Button>
       </View>
     </View>
   );
