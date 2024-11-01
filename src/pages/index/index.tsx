@@ -7,7 +7,7 @@ import React, {
   useState
 } from 'react';
 import { Button, View } from '@tarojs/components';
-import CustCalendar, {CustCalendarInstance} from "custom-calendar-taro";
+import CustCalendar, {CustCalendarInstance, DayType} from "custom-calendar-taro";
 // import 'custom-calendar-taro/dist/index.css';
 import './index.less';
 
@@ -38,13 +38,21 @@ const Index: FC<PropsWithChildren> = () => {
     setCurrentView('2024-11-08');
   }
   const unit = type === 'week' ? '周' : '月';
+
+  const [selectedDate, setSelectedDate] = useState('2024-11-01');
+  const onDayClick = (info: DayType, dateFormate: string) => {
+    console.log(info, dateFormate);
+    
+    setSelectedDate(dateFormate)
+  }
+
   return (
     <View className='index'>
       <CustCalendar
         view={type}
         ref={custCalendarInstance}
         currentView={currentView}
-        selectedDate='2024-11-01'
+        selectedDate={selectedDate}
         marks={[
           { value: '2022-09-21', color: 'red' },
           { value: '2022-09-22', color: 'pink' },
@@ -59,6 +67,7 @@ const Index: FC<PropsWithChildren> = () => {
           { value: '2022-09-26', text: '休假', color: 'darkblue' },
           { value: '2022-09-27', text: '会议', color: 'gray' }
         ]}
+        onDayClick={onDayClick}
       />
       <View className='control-btn'>
         <Button onClick={goPre}>上一{unit}</Button>

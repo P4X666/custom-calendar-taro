@@ -6,7 +6,7 @@ import React, {
   useState
 } from 'react';
 import { Button, View } from '@tarojs/components';
-import { CustCalendarInstance, DayProps } from 'custom-calendar-taro';
+import { CustCalendarInstance, DayProps, DayType } from 'custom-calendar-taro';
 import CustCalendar from 'src/component/Calendar';
 // import 'custom-calendar-taro/dist/index.css';
 import styles from './index.module.less';
@@ -49,6 +49,13 @@ const CustRender: FC<PropsWithChildren> = () => {
     );
   };
 
+  const [selectedDate, setSelectedDate] = useState('2024-11-01');
+  const onDayClick = (info: DayType, dateFormate: string) => {
+    console.log(info, dateFormate);
+    
+    setSelectedDate(dateFormate)
+  }
+
   const unit = type === 'week' ? '周' : '月';
   return (
     <View>
@@ -58,6 +65,8 @@ const CustRender: FC<PropsWithChildren> = () => {
         ref={custCalendarInstance}
         custDayRender={custDayRender}
         custWeekRender={custWeekRender}
+        selectedDate={selectedDate}
+        onDayClick={onDayClick}
       />
       <View className='control-btn'>
         <Button onClick={goPre}>上一{unit}</Button>
