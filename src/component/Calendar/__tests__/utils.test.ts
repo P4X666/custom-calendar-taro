@@ -217,14 +217,11 @@ describe.each(
     // 闰年
     { year: 2024, month: 2 }
   ].map((item, index) => {
-    // @ts-ignore
-    item.expected = canlendarMonth[index];
-    return item;
+    return { ...item, expected: canlendarMonth[index] };
   })
 )
   (
     'getMonthDays 测试$year,$month',
-    // @ts-ignore
     ({ year, month, expected }) => {
       it(`${year}年${month}月`, () => {
         const days = getMonthDays(year, month).map(item => item.day);
@@ -250,9 +247,7 @@ describe.each(
     { year: 2024, month: 2 }
   ].map((item, index) => {
     // 只测试每个月的第一周
-    // @ts-ignore
-    item.expected = canlendarMonth[index].slice(0, 7);
-    return item;
+    return { ...item, expected: canlendarMonth[index].slice(0, 7) };
   })
 )(
   'getWeekDays 测试$year,$month',

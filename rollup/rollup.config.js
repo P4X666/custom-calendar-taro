@@ -7,7 +7,7 @@ import less from "less";
 
 const overrides = {
   compilerOptions: { declaration: true },
-  exclude: ["src/pages"],
+  exclude: ["src/pages", "src/component/**/__tests__/**/*.ts"],
   include: ["src/component/**/*.ts", "src/component/**/*.tsx"]
 }
 

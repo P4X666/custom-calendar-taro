@@ -122,7 +122,8 @@ export const getWeekDays = (year: number, month: number, day: number, startWeekD
     _day--;
     _firstWeekDay--;
   }
-
+  // 复位
+  _month = month;
   // 填充后半部分
   _day = day + 1;
   _firstWeekDay = ((firstWeekDay - startWeekDay + 7) % 7) + 1;
